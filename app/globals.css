@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-deep: var(--accent-deep);
+  --color-teal: var(--teal);
+  --color-border: var(--border);
+  --color-border-soft: var(--border-soft);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+  --font-mono: var(--font-mono);
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.625rem;
+  --text-2xl: 2.25rem;
+  --text-3xl: 3.5rem;
+  --text-4xl: 5rem;
+}
+
+:root {
+  --bg: #0e0d0c;
+  --bg-elevated: #161413;
+  --bg-subtle: #1f1c1a;
+  --fg: #f2ede5;
+  --fg-muted: #a39c92;
+  --fg-subtle: #6b645c;
+  --accent: #e8a656;
+  --accent-soft: #f2c28b;
+  --accent-deep: #b8843d;
+  --teal: #5dc5b7;
+  --border: #2a2622;
+  --border-soft: #1f1c19;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    linear-gradient(180deg, rgba(232, 166, 86, 0.035), transparent 26rem),
+    var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: var(--text-base);
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(232, 166, 86, 0.28);
+  color: var(--fg);
+}
+
+a {
+  text-decoration: none;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 50;
+  transform: translateY(-150%);
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  background: var(--bg-elevated);
+  color: var(--fg);
+  padding: 0.6rem 0.8rem;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--text-xs);
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}
