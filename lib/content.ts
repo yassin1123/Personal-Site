@@ -1,7 +1,7 @@
 export const profile = {
   name: "Yassin Al-Yassin",
-  tagline: "I build AI agents for the engineers who design the physical world.",
-  meta: "Currently building Substrate — the agentic platform for deep-tech engineering. Previously: Argus (deployed across 150 users), 2nd of 100+ at the AMD Pervasive AI Contest, 1st at BAE Systems Hack the Future. Final-year EE at Southampton. Available for founder conversations and Tracer design partners.",
+  tagline: "Hardware engineer building agentic AI for the engineers who design the physical world.",
+  meta: "Final-year Electronic Engineering at Southampton. Building Substrate — an agentic platform for deep-tech engineering, starting with Tracer, a verifiable copilot for legacy circuit modernisation. Problem validated through interviews with engineers at modernisation, defence, and biomedical firms. Previously: Argus (multi-agent product I built solo and deployed to 150 users at 180DC Southampton), 2nd of 100+ at the AMD Pervasive AI Contest (team of 4, led the core), 1st at BAE Systems Hack the Future. Available for founder conversations.",
   location: "Southampton / London, UK",
   email: "yassinalyassin771@gmail.com",
   socials: {
@@ -27,20 +27,20 @@ export const ventures = [
   {
     name: "Substrate",
     subtitle: "AI agents for the physical world.",
-    status: "BUILDING · TRACER SHIPPING",
+    status: "BUILDING · PROBLEM VALIDATED",
     weight: "primary",
     lede:
-      "Every great AI company is being built for software developers. The engineers who design the physical world — chips, circuits, embedded systems, hardware — still work in tools from the 1990s. Substrate is the agentic platform for that gap.",
+      "Every great AI company is being built for software developers. The engineers who design the physical world — chips, circuits, embedded systems, hardware — still work in tools from the 1990s. Substrate is the agentic platform for that gap. I'm building it because I'm one of the few founders fluent in both worlds.",
     paragraphs: [
-      "I'm starting with Tracer, an agent that modernises legacy electronic circuits. It's the wedge: defence reshoring and supply-chain mandates have created urgent budgets, engineers come to us with problems they already have, and frontier multimodal models can finally reason about schematics end-to-end. I built the technical core for this at the AMD Pervasive AI Contest, where it placed 2nd of over 100 teams.",
-      "The platform compounds underneath. Each Tracer engagement adds proprietary design data and engineer trust that the next agent — Schematic, Embedded, beyond — inherits. What Cursor is doing for software, Substrate is doing for everything engineers build outside it.",
+      "I'm starting with Tracer: a verifiable copilot that helps engineers modernise legacy electronic circuits step by step, with the engineer checking each output. I picked this wedge because defence reshoring and supply-chain mandates have created urgent modernisation budgets, frontier multimodal models can finally read schematics end-to-end, and the engineers I interviewed all said the same thing — they want a tool that works alongside them, not an autonomous black box that multiplies errors in high-stakes work. I led the team that built the core technical primitive at the AMD Pervasive AI Contest, where it placed 2nd of 100+ teams.",
+      "The plan: ship Tracer first as an assistant inside engineers' existing EDA tools (Altium, KiCad, Cadence) — low friction, no behaviour change required. From there it grows into a purpose-built modernisation EDA platform, and that platform becomes the foundation other Substrate agents (Schematic, Embedded, and beyond) are built on. Each engagement adds proprietary design data and engineer trust the next layer inherits. What Cursor is to software, Substrate is being built to be for the rest.",
     ],
     metadata: [
-      ["WEDGE", "Tracer — legacy circuit modernisation"],
-      ["STAGE", "Pre-seed"],
-      ["PROOF", "AMD AI Contest — 2nd of 100+"],
-      ["STACK", "Multi-provider LLM router · agentic core · domain models"],
-      ["STATUS", "Live design-partner conversations"],
+      ["WEDGE", "Tracer — verifiable copilot for legacy circuit modernisation"],
+      ["STAGE", "Pre-seed — building MVP"],
+      ["PROOF", "Core primitive built at AMD AI Contest (2nd of 100+)"],
+      ["VALIDATION", "Engineer interviews — modernisation, defence, biomedical"],
+      ["STATUS", "Problem validated; building Tracer MVP"],
     ],
     links: [
       { label: "Read the deck", href: "/deck" },
@@ -61,7 +61,7 @@ export const work = [
     title: "AMD Pervasive AI Contest",
     kind: "COMPETITION",
     year: "2025",
-    body: "2nd of 100+ teams. Built an AI system on AMD GPUs that infers a circuit's components and functional intent end-to-end — the technical core Substrate is built on.",
+    body: "2nd of 100+ teams. Team of 4 — I led and built the circuits parser and core circuit-reasoning logic. The system takes a schematic and infers what each component is, what sub-circuits do, and what the whole circuit functionally does. This understanding layer is the genuinely hard part — and the primitive Tracer is being built on. Codebase and trained artefacts available; runnable on GPU hardware.",
   },
   {
     title: "BAE Systems Hack the Future",
@@ -117,7 +117,7 @@ export const notes = [
     date: "2026-05-08",
     body: `I shipped Argus in 2025. I closed it down in May 2026.
 
-It wasn't a failure. Argus did exactly what it was supposed to do — it got deployed across a hundred and fifty users at 180 Degrees Consulting Southampton, won the £3K Future Worlds Enterprise Prize, got me into rooms with Entrepreneur First and Future Worlds, and pulled fifteen contributors across four university societies into a real engineering team. It taught me how to build, ship, recruit, and sell. Then I let it go.
+It wasn't a failure. Argus did exactly what it was supposed to do — it got deployed across a hundred and fifty users at 180 Degrees Consulting Southampton, won the £3K Future Worlds Enterprise Prize, got me into rooms with Future Worlds, and pulled fifteen contributors across four university societies into a real engineering team. It taught me how to build, ship, recruit, and sell. Then I let it go.
 
 I'm letting it go because the future is Substrate, and you can't run two ventures at full intensity. But before I move on, I want to write down what shipping Argus taught me about building agentic products. These lessons are the foundation of how I'm thinking about Substrate's UX from day one.
 
@@ -210,7 +210,7 @@ Substrate is what's next.
     date: "2026-04-15",
     body: `Argus could've been my company. I gave it away.
 
-In April 2026, I had a clean shot at turning Argus into my pre-seed venture. The product was deployed across 150 users at 180 Degrees Consulting Southampton. The £3K Future Worlds Enterprise Prize had paid for the build. EF and Future Worlds had pitched me. Blackmont Consulting was in active integration talks. I'd recruited and trained a fifteen-person engineering team across four university societies that knew how to ship features.
+In April 2026, I had a clean shot at turning Argus into my pre-seed venture. The product was deployed across 150 users at 180 Degrees Consulting Southampton. The £3K Future Worlds Enterprise Prize had paid for the build. I'd pitched at Future Worlds. I'd recruited and trained a fifteen-person engineering team across four university societies that knew how to ship features.
 
 The path was open. I could've taken the team with me, raised on the back of the deployment, and made Argus the venture I'd spend the next five years on. Most founders in my position would have.
 
@@ -285,80 +285,3 @@ All of it is exactly as it should be.
   },
 ] as const;
 
-export const deckAgents = [
-  {
-    icon: "Cpu",
-    agent: "TRACER",
-    status: "SHIPPING",
-    headline: "Modernise legacy circuits",
-    description: "Reverse-engineers and modernises legacy electronic designs.",
-    featured: true,
-  },
-  {
-    icon: "Wand2",
-    agent: "SCHEMATIC",
-    status: "Q3 2026",
-    headline: "Design new circuits",
-    description: "Generates new circuit designs from functional intent.",
-    featured: false,
-  },
-  {
-    icon: "Terminal",
-    agent: "EMBEDDED",
-    status: "Q1 2027",
-    headline: "Low-level firmware",
-    description: "Writes and verifies embedded code against real hardware.",
-    featured: false,
-  },
-  {
-    icon: "Box",
-    agent: "MECHANICAL",
-    status: "Q2 2027",
-    headline: "3D / CAD generation",
-    description: "Produces parametric mechanical designs from spec.",
-    featured: false,
-  },
-  {
-    icon: "Layers",
-    agent: "SILICON",
-    status: "2028",
-    headline: "Chip design & verification",
-    description: "Agentic RTL design, synthesis, and verification.",
-    featured: false,
-  },
-  {
-    icon: "Wrench",
-    agent: "ASSEMBLY",
-    status: "2028",
-    headline: "Chip packaging & assembly",
-    description: "Optimises packaging, layout, and assembly workflows.",
-    featured: false,
-  },
-] as const;
-
-export const deckEvidence = [
-  {
-    figure: "2nd",
-    subfigure: "of 100+ teams",
-    title: "AMD Pervasive AI Contest.",
-    body: "Built the AI core that infers a circuit's components and functional intent end-to-end. The exact technical primitive Tracer is built on.",
-  },
-  {
-    figure: "150",
-    subfigure: "person deployment",
-    title: "Argus (prior venture).",
-    body: "Multi-agent AI tool deployed across 180DC Southampton. Proves the ability to take agentic systems from prototype into real users' workflows.",
-  },
-  {
-    figure: "£3K",
-    subfigure: "Enterprise Prize",
-    title: "EF + Future Worlds + Blackmont.",
-    body: "Pitched at Entrepreneur First and Future Worlds. Active integration talks with Blackmont Consulting.",
-  },
-  {
-    figure: "1st",
-    subfigure: "of ~15 teams",
-    title: "BAE Systems Hack the Future.",
-    body: "Built a full hardware + backend + UI system end-to-end. Hardware fluency that almost no AI founder has.",
-  },
-] as const;

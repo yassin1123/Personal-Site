@@ -21,42 +21,42 @@ export const metadata: Metadata = {
 
 const agents = [
   {
-    status: "● SHIPPING",
+    status: "● BUILDING",
     agent: "TRACER",
     headline: "Modernise legacy circuits",
-    description: "Reverse-engineers and modernises legacy electronic designs.",
+    description: "A verifiable copilot that reverse-engineers legacy circuits step by step. The wedge. Core primitive proven at AMD; MVP in development.",
     featured: true,
   },
   {
-    status: "Q3 2026",
+    status: "DIRECTION",
     agent: "SCHEMATIC",
     headline: "Design new circuits",
     description: "Generates new circuit designs from functional intent.",
     featured: false,
   },
   {
-    status: "Q1 2027",
+    status: "DIRECTION",
     agent: "EMBEDDED",
     headline: "Low-level firmware",
     description: "Writes and verifies embedded code against real hardware.",
     featured: false,
   },
   {
-    status: "Q2 2027",
+    status: "DIRECTION",
     agent: "MECHANICAL",
     headline: "3D / CAD generation",
     description: "Produces parametric mechanical designs from spec.",
     featured: false,
   },
   {
-    status: "2028",
+    status: "DIRECTION",
     agent: "SILICON",
     headline: "Chip design & verification",
     description: "Agentic RTL design, synthesis, and verification.",
     featured: false,
   },
   {
-    status: "2028",
+    status: "DIRECTION",
     agent: "ASSEMBLY",
     headline: "Chip packaging & assembly",
     description: "Optimises packaging, layout, and assembly workflows.",
@@ -68,22 +68,22 @@ const wedgeReasons = [
   {
     number: "01",
     claim: "Existing budgets, today.",
-    body: "Defence reshoring and supply-chain mandates have already allocated procurement budgets.",
+    body: "Defence reshoring and supply-chain mandates have already allocated procurement budgets for modernisation work.",
   },
   {
     number: "02",
     claim: "No behaviour change required.",
-    body: "Engineers come to us with problems they already have. No tooling-adoption battle to fight.",
+    body: "The engineers I interviewed told me this directly — they have the problem, and they want a tool that fits inside their existing EDA workflow.",
   },
   {
     number: "03",
     claim: "AI-tractable today.",
-    body: "Multimodal frontier models can finally read schematics end-to-end. We've already proven it.",
+    body: "Multimodal frontier models can finally read schematics, datasheets, and CAD in the same pass. The AMD core primitive proves it works on real circuits.",
   },
   {
     number: "04",
-    claim: "Every project trains the platform.",
-    body: "Each engagement adds proprietary design data that the next agent inherits.",
+    claim: "The work compounds.",
+    body: "Each modernisation engagement adds proprietary design data and engineer trust — the foundation the next agent in the roadmap is unlocked by.",
   },
 ] as const;
 
@@ -92,25 +92,25 @@ const evidence = [
     figure: "2nd",
     subtitle: "OF 100+ TEAMS",
     title: "AMD Pervasive AI Contest",
-    body: "Built the AI core that infers a circuit's components and intent end-to-end. The exact primitive Tracer runs on.",
+    body: "Team of 4. I led and built the circuits parser and core circuit-reasoning logic — the primitive Tracer is being built on. Codebase and trained artefacts available.",
   },
   {
     figure: "150",
     subtitle: "USER DEPLOYMENT",
     title: "Argus (prior venture)",
-    body: "Multi-agent AI deployed across 180DC Southampton. Proof I can take agentic systems from prototype to live users.",
+    body: "Multi-agent AI I built solo and deployed across 180DC Southampton. Proof I can take agentic systems from prototype to real users.",
   },
   {
     figure: "£3K",
-    subtitle: "ENTERPRISE PRIZE",
-    title: "Future Worlds · Blackmont",
-    body: "Pitched at Future Worlds. Active integration talks with Blackmont Consulting.",
+    subtitle: "FUTURE WORLDS PRIZE",
+    title: "Argus, pitched and funded",
+    body: "Argus won the Future Worlds Enterprise Prize and was pitched at Future Worlds. Proof I can build venture-grade product and pitch it to investors.",
   },
   {
     figure: "1st",
     subtitle: "OF ~15 TEAMS",
     title: "BAE Systems Hack the Future",
-    body: "Built a full hardware + backend + UI system end-to-end. Hardware fluency that almost no AI founder has.",
+    body: "End-to-end hardware + networking + backend + UI in 24 hours. The hardware fluency almost no AI founder has.",
   },
 ] as const;
 
@@ -125,7 +125,7 @@ const whyNow = [
     number: "02.",
     claim: "Agentic orchestration crossed the reliability line.",
     support:
-      "Tool-using, multi-step agents are no longer demoware. Production-ready as of nine months ago.",
+      "Tool-using, multi-step agents are now production-grade. The piece needed to make a verifiable copilot feel real.",
   },
   {
     number: "03.",
@@ -249,8 +249,8 @@ export default function DeckPage() {
               The agentic platform for deep-tech engineering.
             </h2>
             <p className="mt-7 max-w-[60ch] text-lg leading-[1.55] text-fg-muted">
-              A family of specialised agents for everything engineers build
-              outside software.
+              Tracer first. The other agents are the direction — each unlocked
+              by the data and engineer trust the previous one earns.
             </p>
           </ScrollReveal>
 
@@ -291,7 +291,7 @@ export default function DeckPage() {
 
           <ScrollReveal delay={0.15}>
             <p className="mx-auto mt-10 max-w-[62ch] text-center font-serif text-xl italic leading-[1.24] tracking-[-0.02em] text-fg">
-              What Cursor is doing for software, Substrate is doing for the rest.
+              What Cursor is to software, Substrate is being built to be for the rest.
             </p>
           </ScrollReveal>
         </DeckSection>
@@ -302,7 +302,7 @@ export default function DeckPage() {
               We start with Tracer.
             </h2>
             <p className="mt-6 max-w-[50ch] font-serif text-2xl italic leading-[1.18] tracking-[-0.025em] text-fg-muted">
-              An agent that modernises legacy electronic circuits.
+              A verifiable copilot that helps engineers modernise legacy electronic circuits — step by step, engineer-in-the-loop.
             </p>
           </ScrollReveal>
 
@@ -326,15 +326,15 @@ export default function DeckPage() {
 
           <ScrollReveal delay={0.15}>
             <p className="mx-auto mt-14 max-w-[62ch] text-center font-serif text-xl italic leading-[1.24] tracking-[-0.02em] text-fg">
-              Tracer pays the bills. The platform compounds underneath.
+              Tracer is the wedge. The platform compounds underneath as engagements accumulate.
             </p>
           </ScrollReveal>
         </DeckSection>
 
-        <DeckSection label="04 / EVIDENCE">
+        <DeckSection label="04 / WHAT'S PROVEN">
           <ScrollReveal delay={0.05}>
-            <h2 className="mt-10 max-w-[14ch] font-serif text-5xl font-normal leading-[0.98] tracking-[-0.045em] text-fg md:text-6xl">
-              Tracer is built. The hardest part is already proven.
+            <h2 className="mt-10 max-w-[18ch] font-serif text-5xl font-normal leading-[0.98] tracking-[-0.045em] text-fg md:text-6xl">
+              The hardest part is proven. The plan is grounded in real engineer pain.
             </h2>
           </ScrollReveal>
 
@@ -358,6 +358,43 @@ export default function DeckPage() {
               </ScrollReveal>
             ))}
           </div>
+
+          <ScrollReveal delay={0.2}>
+            <article className="mt-20 border-t border-border pt-10">
+              <p className="font-mono text-xs uppercase tracking-[0.08em] text-accent">
+                DISCOVERY
+              </p>
+              <h3 className="mt-6 max-w-[22ch] font-serif text-4xl font-normal leading-[1.02] tracking-[-0.04em] text-fg md:text-5xl">
+                What engineers told me.
+              </h3>
+              <div className="mt-10 grid gap-10 lg:grid-cols-2">
+                <div className="space-y-5 text-base leading-[1.6] text-fg-muted">
+                  <p>
+                    I interviewed practising engineers at firms specialising in
+                    modernisation, and at defence and biomedical companies that
+                    also do modernisation work.
+                  </p>
+                  <p>
+                    The signal was consistent: legacy circuit and system
+                    modernisation is real, painful, and they urgently need a
+                    faster way to do it.
+                  </p>
+                </div>
+                <div className="space-y-5">
+                  <p className="font-serif text-xl italic leading-[1.3] tracking-[-0.02em] text-fg">
+                    &ldquo;Don&apos;t give us an autonomous black box. In our
+                    domain that just multiplies errors. Give us a tool that
+                    works step by step alongside the engineer, so we can verify
+                    every step.&rdquo;
+                  </p>
+                  <p className="text-sm leading-[1.55] text-fg-muted">
+                    Paraphrased from the engineer interviews. It is the design
+                    brief for Tracer: a verifiable copilot, not autopilot.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </ScrollReveal>
         </DeckSection>
 
         <DeckSection label="05 / WHY NOW">
@@ -406,9 +443,10 @@ export default function DeckPage() {
               I do both.
             </p>
             <p className="mt-12 max-w-5xl font-mono text-xs uppercase leading-[1.8] tracking-[0.08em] text-fg-subtle">
-              Electronic Engineering at Southampton · Zepler Prize · 2nd at AMD
-              Pervasive AI · 1st at BAE Hack the Future · Argus deployed to 150
-              users · Pitched at Future Worlds
+              Final-year EE at Southampton · Zepler Prize · 2nd at AMD Pervasive
+              AI (led 4-person team, built the core) · 1st at BAE Hack the
+              Future · Argus built solo, deployed to 150 users · Tracer
+              validated through engineer interviews
             </p>
           </ScrollReveal>
         </DeckSection>

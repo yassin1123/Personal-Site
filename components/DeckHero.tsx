@@ -42,7 +42,7 @@ export function DeckHero() {
           className="font-mono text-xs uppercase tracking-[0.08em] text-accent"
           variants={item}
         >
-          ● BUILDING SUBSTRATE · TRACER SHIPPING
+          ● BUILDING SUBSTRATE · PROBLEM VALIDATED
         </m.p>
 
         <h1

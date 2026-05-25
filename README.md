@@ -22,9 +22,8 @@ npm run lint
 All copy lives in [`lib/content.ts`](lib/content.ts):
 
 - `profile` — name, tagline, meta, socials
-- `ventures` — Building section (currently Substrate only)
-- `work` — Work grid (8 entries, 4×2)
+- `ventures` — Building section (Substrate)
+- `work` — Work grid
 - `notes` — long-form essays rendered at `/notes/[slug]`
-- `deckAgents`, `deckEvidence` — `/deck` page
 
-Edit there; components read from it.
+Deck content lives in [`app/deck/page.tsx`](app/deck/page.tsx).
