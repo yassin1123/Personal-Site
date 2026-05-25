@@ -443,7 +443,7 @@ export default function DeckPage() {
               I do both.
             </p>
             <p className="mt-12 max-w-5xl font-mono text-xs uppercase leading-[1.8] tracking-[0.08em] text-fg-subtle">
-              Final-year EE at Southampton · Zepler Prize · 2nd at AMD Pervasive
+              Second-year EE at Southampton · Zepler Prize · 2nd at AMD Pervasive
               AI (led 4-person team, built the core) · 1st at BAE Hack the
               Future · Argus built solo, deployed to 150 users · Tracer
               validated through engineer interviews

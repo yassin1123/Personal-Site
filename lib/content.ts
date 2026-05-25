@@ -1,7 +1,7 @@
 export const profile = {
   name: "Yassin Al-Yassin",
   tagline: "Hardware engineer building agentic AI for the engineers who design the physical world.",
-  meta: "Final-year Electronic Engineering at Southampton. Building Substrate — an agentic platform for deep-tech engineering, starting with Tracer, a verifiable copilot for legacy circuit modernisation. Problem validated through interviews with engineers at modernisation, defence, and biomedical firms. Previously: Argus (multi-agent product I built solo and deployed to 150 users at 180DC Southampton), 2nd of 100+ at the AMD Pervasive AI Contest (team of 4, led the core), 1st at BAE Systems Hack the Future. Available for founder conversations.",
+  meta: "Second-year Electronic Engineering at Southampton. Building Substrate — an agentic platform for deep-tech engineering, starting with Tracer, a verifiable copilot for legacy circuit modernisation. Problem validated through interviews with engineers at modernisation, defence, and biomedical firms. Previously: Argus (multi-agent product I built solo and deployed to 150 users at 180DC Southampton), 2nd of 100+ at the AMD Pervasive AI Contest (team of 4, led the core), 1st at BAE Systems Hack the Future. Available for founder conversations.",
   location: "Southampton / London, UK",
   email: "yassinalyassin771@gmail.com",
   socials: {
