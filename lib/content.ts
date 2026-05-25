@@ -103,6 +103,36 @@ export const work = [
 
 export const notes = [
   {
+    slug: "the-knowledge-wall",
+    title: "The knowledge wall.",
+    subtitle: "Where Substrate came from.",
+    date: "2026-05-25",
+    body: `When I was a kid I was obsessed with drones. I wanted to build one that could fly alongside kites. Random, I know, but to me it was the best idea in the world.
+
+I couldn't build it.
+
+Not because the idea was bad. Between me and the thing I wanted to make stood a wall. Years of knowledge I didn't have yet. Datasheets I couldn't read. Circuits I didn't understand. Tools that assumed I already knew everything. The wall didn't care how good the idea was. It blocked everyone the same.
+
+Most ideas die at that wall. Mine did.
+
+What gets me isn't the ideas that fail. It's the ones that never get tried. Some teenager right now has a better idea than anything I'll ever have, and they'll never build it, because the wall is too high and they'll quit before they get over it.
+
+Then AI got good. Really good. And I realised the wall isn't permanent.
+
+Software people already proved it. Cursor, Copilot. They took the wall down for code. A kid with an idea and no CS degree can ship a real product now. That's not a small thing. That's the world changing.
+
+But the wall is still standing everywhere else. For anyone who wants to build something physical: a circuit, a device, a machine. It's exactly as high as it was when I was fifteen.
+
+That's Substrate. AI that stands next to you and hands you the knowledge as you go, so the idea is the only thing that has to be good. Not your years of training. Just the idea.
+
+I'm starting with the engineers who hit that wall professionally, every day. But that's the wedge, not the point.
+
+I got over the wall. It took years I shouldn't have needed. Now I'm tearing it down, so anyone with a dream can build it, the way I never could.
+
+Starting with the kid who wants to fly a drone next to a kite.`,
+    published: true,
+  },
+  {
     slug: "ai-for-the-physical-world",
     title: "AI for the physical world.",
     subtitle: "Why deep-tech engineering is the next AI frontier.",
