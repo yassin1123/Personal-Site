@@ -71,13 +71,13 @@ export const work = [
   {
     title: "BAE Systems Hack the Future",
     kind: "COMPETITION",
-    year: "2024",
+    year: "2026",
     body: "1st of ~15 teams. Designed and shipped an end-to-end World Cup fan-experience system spanning hardware, networking, backend, and UI in 24 hours.",
   },
   {
     title: "Vigil — Offline Edge AI Detection",
     kind: "PROJECT",
-    year: "2024",
+    year: "2026",
     body: "Computer-vision prototype on NVIDIA Jetson Orin Nano for object detection, tracking, and tamper-evident event logging. Designed for denied-network deployment with no cloud dependency.",
   },
   {
@@ -89,19 +89,19 @@ export const work = [
   {
     title: "180 Degrees Consulting Southampton",
     kind: "VICE PRESIDENT",
-    year: "2024–present",
+    year: "2024–25",
     body: "Co-president of a ~150-person chapter; led recruitment of 40+ consultants; sourced and led engagements with Cancer Research UK and British Heart Foundation.",
   },
   {
     title: "Blackmont Consulting",
     kind: "PROJECT MANAGER",
-    year: "2026",
+    year: "2025",
     body: "Led MyTender.io build (multi-agent LLM tender platform) with founders. Drove ~75 sign-ups; promoted from Consultant after the Gononet Technologies engagement.",
   },
   {
     title: "Zepler Prize",
     kind: "AWARD",
-    year: "2024",
+    year: "2025",
     body: "University of Southampton — top practical lab grades in cohort.",
   },
 ] as const;
