@@ -10,7 +10,7 @@ export function Building() {
   // hardcode copy and never change lib/content.ts wording.
   const stageRow = substrate.metadata.find(([k]) => k === "STAGE");
   const stageWord = stageRow
-    ? stageRow[1].split(/[\s—-]/)[0].toUpperCase()
+    ? stageRow[1].split(/[\s—]/)[0].toUpperCase()
     : null;
   const badges = [
     ...substrate.status.split("·").map((b) => b.trim()),
