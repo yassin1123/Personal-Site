@@ -10,35 +10,39 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --color-accent-deep: var(--accent-deep);
-  --color-teal: var(--teal);
+  --color-gold: var(--gold);
   --color-border: var(--border);
   --color-border-soft: var(--border-soft);
+  --color-ink-on-dark: var(--ink-on-dark);
   --font-sans: var(--font-body);
   --font-serif: var(--font-display);
   --font-mono: var(--font-mono);
-  --text-xs: 0.8125rem;
-  --text-sm: 0.9375rem;
-  --text-base: 1.0625rem;
+  --text-xs: 0.72rem;
+  --text-sm: 0.88rem;
+  --text-base: 1.05rem;
   --text-lg: 1.25rem;
-  --text-xl: 1.625rem;
-  --text-2xl: 2.25rem;
-  --text-3xl: 3.5rem;
-  --text-4xl: 5rem;
+  --text-xl: 1.6rem;
+  --text-2xl: 2.2rem;
+  --text-3xl: 3.2rem;
+  --text-4xl: 4.6rem;
+  --ease-paper: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 :root {
-  --bg: #0e0d0c;
-  --bg-elevated: #161413;
-  --bg-subtle: #1f1c1a;
-  --fg: #f2ede5;
-  --fg-muted: #a39c92;
-  --fg-subtle: #6b645c;
-  --accent: #e8a656;
-  --accent-soft: #f2c28b;
-  --accent-deep: #b8843d;
-  --teal: #5dc5b7;
-  --border: #2a2622;
-  --border-soft: #1f1c19;
+  /* paper / ink palette */
+  --bg: #f4efe6;          /* paper */
+  --bg-elevated: #efe8db; /* paper-2 — raised surfaces, alt section bg */
+  --bg-subtle: #ebe3d2;   /* slightly deeper alt */
+  --fg: #1c1a17;          /* ink — primary */
+  --fg-muted: #3a352e;    /* ink-soft — body */
+  --fg-subtle: #6b6457;   /* ink-faint — meta */
+  --accent: #9c4221;      /* burnt sienna / rust */
+  --accent-soft: #b8623c; /* lighter rust */
+  --accent-deep: #7c3219; /* darker rust for hover */
+  --gold: #8a6d3b;        /* secondary accent, gradient partner */
+  --border: #d8cfbf;      /* line */
+  --border-soft: #e3dccd; /* line-soft */
+  --ink-on-dark: #f4efe6; /* paper text on the dark footer */
 }
 
 * {
@@ -53,23 +57,34 @@ html {
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  background:
-    linear-gradient(180deg, rgba(232, 166, 86, 0.035), transparent 26rem),
-    var(--bg);
+  background: var(--bg);
   color: var(--fg);
-  font-family: var(--font-body), system-ui, sans-serif;
-  font-size: var(--text-base);
-  line-height: 1.55;
+  font-family: var(--font-body), Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.62;
+  font-optical-sizing: auto;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
+/* paper grain overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 ::selection {
-  background: rgba(232, 166, 86, 0.28);
-  color: var(--fg);
+  background: var(--accent);
+  color: var(--bg);
 }
 
 a {
+  color: inherit;
   text-decoration: none;
 }
 
@@ -79,12 +94,14 @@ a {
   top: 1rem;
   z-index: 50;
   transform: translateY(-150%);
-  border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
-  background: var(--bg-elevated);
+  border: 1px solid var(--accent);
+  background: var(--bg);
   color: var(--fg);
   padding: 0.6rem 0.8rem;
   font-family: var(--font-mono), monospace;
   font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   transition: transform 160ms ease;
 }
 

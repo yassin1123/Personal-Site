@@ -3,7 +3,7 @@
 import * as m from "motion/react-m";
 import { profile } from "@/lib/content";
 
-const revealEase = [0.21, 0.47, 0.32, 0.98] as const;
+const heroEase = [0.16, 1, 0.3, 1] as const;
 
 const container = {
   hidden: { opacity: 0 },
@@ -11,87 +11,142 @@ const container = {
     opacity: 1,
     transition: {
       duration: 0.2,
-      staggerChildren: 0.06,
-      delayChildren: 0.1,
+      staggerChildren: 0.16,
+      delayChildren: 0.12,
     },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 8 },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: revealEase },
+    transition: { duration: 1.05, ease: heroEase },
   },
 };
 
+function renderHighlightedTagline(tagline: string) {
+  const phrase = "agentic AI";
+  const parts = tagline.split(phrase);
+  if (parts.length < 2) return tagline;
+  return parts.flatMap((part, i) =>
+    i < parts.length - 1
+      ? [
+          part,
+          <em
+            key={`hl-${i}`}
+            className="not-italic font-serif italic text-fg"
+          >
+            {phrase}
+          </em>,
+        ]
+      : [part],
+  );
+}
+
 export function Hero() {
-  const [firstName, lastName] = profile.name.split(" ");
+  // "Yassin Al-Yassin" → "Yassin" / "Al-" + italic accent "Yassin"
+  const nameParts = profile.name.split(" ");
+  const first = nameParts[0] ?? profile.name;
+  const last = nameParts.slice(1).join(" ");
+  const hyphenIdx = last.indexOf("-");
+  const surnamePrefix = hyphenIdx >= 0 ? last.slice(0, hyphenIdx + 1) : last;
+  const surnameAccent = hyphenIdx >= 0 ? last.slice(hyphenIdx + 1) : "";
 
   return (
-    <m.header
-      className="relative min-h-screen overflow-hidden px-6 py-8 sm:px-10 lg:px-16"
-      initial={{ backgroundColor: "#000000" }}
-      animate={{ backgroundColor: "var(--bg)" }}
-      transition={{ duration: 0.2 }}
+    <header
+      id="top"
+      className="relative flex min-h-screen flex-col justify-center px-6 pb-20 pt-32 sm:px-10 lg:px-16 lg:pt-40"
     >
       <m.div
-        className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-6xl grid-cols-1 content-center gap-12 lg:grid-cols-12"
+        className="mx-auto w-full max-w-[1180px]"
         variants={container}
         initial="hidden"
         animate="show"
       >
         <m.div
-          className="font-mono text-xs uppercase tracking-[0.08em] text-accent lg:col-span-2 lg:pt-3"
+          className="mb-9 flex items-center gap-[14px] font-mono text-[0.7rem] uppercase tracking-[0.14em] text-fg-subtle"
           variants={item}
         >
+          <span className="relative inline-block h-[7px] w-[7px] rounded-full bg-accent">
+            <span
+              aria-hidden="true"
+              className="absolute -inset-[5px] rounded-full border border-accent"
+              style={{
+                animation: "heroPulse 2.6s cubic-bezier(0.16,1,0.3,1) infinite",
+              }}
+            />
+          </span>
           01 / NOW
         </m.div>
 
-        <div className="min-w-0 lg:col-span-8 lg:col-start-3">
-          <h1
-            className="font-serif text-[2.75rem] font-normal leading-[0.95] tracking-[-0.04em] text-fg sm:text-3xl lg:text-4xl"
-            aria-label={profile.name}
-          >
-            <m.span className="block" variants={item}>
-              {firstName}
-            </m.span>
-            <m.span className="block" variants={item}>
-              {lastName}
-            </m.span>
-          </h1>
+        <m.h1
+          variants={item}
+          aria-label={profile.name}
+          className="mb-8 font-serif font-normal leading-[0.93] tracking-[-0.035em] text-fg"
+          style={{
+            fontSize: "clamp(3.4rem, 9vw, 8.2rem)",
+            fontWeight: 340,
+          }}
+        >
+          <span className="block">{first}</span>
+          <span className="block">
+            {surnamePrefix}
+            {surnameAccent ? (
+              <em
+                className="not-italic font-serif italic text-accent"
+                style={{ fontWeight: 340 }}
+              >
+                {surnameAccent}
+              </em>
+            ) : null}
+          </span>
+        </m.h1>
 
-          <m.p
-            className="mt-14 max-w-[24ch] font-serif text-lg italic leading-[1.14] tracking-[-0.02em] text-fg sm:max-w-[30ch] sm:text-2xl"
-            variants={item}
-          >
-            {profile.tagline}
-          </m.p>
-
-          <m.div
-            className="mt-9 h-px w-6 bg-border"
-            variants={item}
-            aria-hidden="true"
-          />
-
-          <m.p
-            className="mt-8 max-w-[32ch] text-sm leading-[1.62] text-fg-muted sm:max-w-[60ch] sm:text-base"
-            variants={item}
-          >
-            {profile.meta}
-          </m.p>
-        </div>
+        <m.p
+          variants={item}
+          className="max-w-[600px] font-serif text-fg-muted"
+          style={{
+            fontSize: "clamp(1.18rem, 2.4vw, 1.5rem)",
+            lineHeight: 1.5,
+            fontWeight: 340,
+          }}
+        >
+          {renderHighlightedTagline(profile.tagline)}
+        </m.p>
       </m.div>
 
       <m.div
-        className="absolute bottom-7 left-6 font-mono text-xs uppercase tracking-[0.08em] text-fg-subtle sm:left-10 lg:left-16"
+        className="absolute bottom-10 left-6 flex items-center gap-3 sm:left-10 lg:left-16"
         initial={{ opacity: 0 }}
-        animate={{ opacity: [0.45, 0.85, 0.45] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.85, ease: heroEase }}
       >
-        ↓ scroll
+        <span className="relative block h-[42px] w-px overflow-hidden bg-border">
+          <span
+            aria-hidden="true"
+            className="absolute left-0 top-[-42px] block h-[42px] w-full bg-accent"
+            style={{
+              animation: "heroTrickle 2.4s cubic-bezier(0.16,1,0.3,1) infinite",
+            }}
+          />
+        </span>
+        <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-fg-subtle">
+          Scroll
+        </span>
       </m.div>
-    </m.header>
+
+      <style>{`
+        @keyframes heroPulse {
+          0% { transform: scale(0.7); opacity: 0.9; }
+          70%, 100% { transform: scale(1.9); opacity: 0; }
+        }
+        @keyframes heroTrickle {
+          0% { top: -42px; }
+          60%, 100% { top: 42px; }
+        }
+      `}</style>
+    </header>
   );
 }

@@ -40,7 +40,6 @@ export const ventures = [
       ["STAGE", "Pre-seed — building MVP"],
       ["PROOF", "Core primitive built at AMD AI Contest (2nd of 100+)"],
       ["VALIDATION", "Engineer interviews — modernisation, defence, biomedical"],
-      ["STATUS", "Problem validated; building Tracer MVP"],
     ],
     links: [
       { label: "Read the deck", href: "/deck" },

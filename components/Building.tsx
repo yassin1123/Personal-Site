@@ -1,96 +1,147 @@
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { ArrowLink } from "@/components/ui/ArrowLink";
 import { FooterScrollLink } from "@/components/ui/FooterScrollLink";
-import { Pill } from "@/components/ui/Pill";
 import { ventures } from "@/lib/content";
 
 export function Building() {
   const substrate = ventures[0];
+  const badges = substrate.status.split("·").map((b) => b.trim());
 
   return (
-    <section className="px-6 py-20 sm:px-10 lg:px-16 lg:py-32">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 lg:grid-cols-12">
-        <ScrollReveal className="lg:col-span-2">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-[0.08em] text-accent">
-              02 / BUILDING
-            </p>
+    <section
+      id="building"
+      className="px-6 py-24 sm:px-10 lg:px-16 lg:py-32"
+    >
+      <div className="mx-auto max-w-[1180px]">
+        <ScrollReveal>
+          <div className="mb-12 flex items-baseline gap-[18px]">
+            <span className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent">
+              02
+            </span>
+            <h2
+              className="font-serif font-normal leading-[1.04] tracking-[-0.028em] text-fg"
+              style={{ fontSize: "clamp(2rem, 4.6vw, 3.4rem)", fontWeight: 380 }}
+            >
+              What I&apos;m working on
+              <br />
+              right now.
+            </h2>
           </div>
         </ScrollReveal>
 
-        <div className="min-w-0 lg:col-span-10">
-          <ScrollReveal delay={0.05}>
-            <h2 className="max-w-3xl font-serif text-2xl font-normal leading-[1.08] tracking-[-0.03em] text-fg">
-              What I&apos;m working on right now.
-            </h2>
-          </ScrollReveal>
+        <ScrollReveal delay={0.08}>
+          <article
+            className="relative overflow-hidden rounded-[4px] border border-border bg-gradient-to-b from-bg-elevated to-bg"
+            style={{ padding: "clamp(28px, 5vw, 64px)" }}
+          >
+            <span
+              aria-hidden="true"
+              className="absolute inset-x-0 top-0 h-[3px]"
+              style={{
+                background:
+                  "linear-gradient(90deg, var(--accent), var(--gold), transparent)",
+              }}
+            />
+            <div className="mb-6 flex flex-wrap items-center gap-[10px]">
+              {badges.map((badge) => (
+                <span
+                  key={badge}
+                  className="inline-flex items-center rounded-[2px] border border-accent px-[11px] py-[5px] font-mono text-[0.62rem] uppercase tracking-[0.13em] text-accent"
+                >
+                  {badge}
+                </span>
+              ))}
+            </div>
 
-          <ScrollReveal delay={0.12}>
-            <article className="mt-16 border-y border-border bg-[linear-gradient(135deg,rgba(93,197,183,0.055),transparent_38%)] py-10 sm:py-12 lg:px-0">
-              <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_17rem]">
-                <div>
-                  <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-                    <div>
-                      <h3 className="font-serif text-3xl font-medium leading-[1.02] tracking-[-0.035em] text-fg">
-                        {substrate.name}.
-                      </h3>
-                      <p className="mt-3 max-w-2xl font-serif text-xl italic leading-[1.18] tracking-[-0.02em] text-fg-muted">
-                        {substrate.subtitle}
-                      </p>
-                    </div>
-                    <Pill tone="teal" className="shrink-0 pt-1">
-                      {substrate.status}
-                    </Pill>
-                  </div>
+            <h3
+              className="mb-2 font-serif leading-none tracking-[-0.03em] text-fg"
+              style={{
+                fontSize: "clamp(2.4rem, 6vw, 4rem)",
+                fontWeight: 360,
+              }}
+            >
+              {substrate.name}.
+            </h3>
+            <p className="mb-9 font-serif text-[1.3rem] italic leading-[1.2] text-accent">
+              {substrate.subtitle}
+            </p>
 
-                  <p className="mt-10 max-w-[65ch] text-lg leading-[1.5] text-fg">
-                    {substrate.lede}
-                  </p>
+            <p className="mb-[18px] max-w-[680px] text-[1.1rem] leading-[1.6] text-fg-muted">
+              {substrate.lede}
+            </p>
+            {substrate.paragraphs.map((p) => (
+              <p
+                key={p}
+                className="mb-[18px] max-w-[680px] text-[1.1rem] leading-[1.6] text-fg-muted"
+              >
+                {p}
+              </p>
+            ))}
 
-                  <div className="mt-8 space-y-6">
-                    {substrate.paragraphs.map((paragraph) => (
-                      <p
-                        key={paragraph}
-                        className="max-w-[65ch] text-base leading-[1.62] text-fg-muted"
-                      >
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
+            <div className="mt-10 flex flex-wrap gap-[14px]">
+              {substrate.links.map((link, idx) => {
+                const isPrimary = idx === 0;
+                const baseClass =
+                  "group inline-flex items-center gap-2 rounded-[3px] px-[22px] py-[13px] font-mono text-[0.72rem] uppercase tracking-[0.1em] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50";
+                const primaryClass =
+                  "bg-fg text-bg hover:bg-accent";
+                const ghostClass =
+                  "border border-border text-fg hover:border-fg hover:bg-bg-elevated";
+                const className = `${baseClass} ${isPrimary ? primaryClass : ghostClass}`;
+                const content = (
+                  <>
+                    {link.label}
+                    <span
+                      aria-hidden="true"
+                      className="transition-transform duration-300 group-hover:translate-x-[3px] group-hover:-translate-y-[3px]"
+                      style={{
+                        transitionTimingFunction:
+                          "cubic-bezier(0.16, 1, 0.3, 1)",
+                      }}
+                    >
+                      ↗
+                    </span>
+                  </>
+                );
+                if (link.href === "#footer") {
+                  return (
+                    <FooterScrollLink key={link.href} className={className}>
+                      {content}
+                    </FooterScrollLink>
+                  );
+                }
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    download={"download" in link ? link.download : undefined}
+                    className={className}
+                  >
+                    {content}
+                  </a>
+                );
+              })}
+            </div>
 
-                  <div className="mt-10 flex flex-wrap gap-x-7 gap-y-4">
-                    {substrate.links.map((link) => (
-                      link.href === "#footer" ? (
-                        <FooterScrollLink key={link.href}>
-                          {link.label}
-                        </FooterScrollLink>
-                      ) : (
-                        <ArrowLink
-                          key={link.href}
-                          href={link.href}
-                          download={"download" in link ? link.download : false}
-                        >
-                          {link.label}
-                        </ArrowLink>
-                      )
-                    ))}
-                  </div>
+            <dl
+              className="mt-[54px] grid gap-px overflow-hidden rounded-[4px] border border-border bg-border"
+              style={{ gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))" }}
+            >
+              {substrate.metadata.map(([label, value]) => (
+                <div
+                  key={label}
+                  className="bg-bg p-[22px] transition-colors duration-300 hover:bg-bg-elevated"
+                >
+                  <dt className="mb-[9px] font-mono text-[0.6rem] uppercase tracking-[0.14em] text-fg-subtle">
+                    {label}
+                  </dt>
+                  <dd className="font-serif text-[0.98rem] leading-[1.38] text-fg">
+                    {value}
+                  </dd>
                 </div>
-
-                <dl className="grid content-start gap-5 border-t border-border-soft pt-8 font-mono text-xs leading-[1.45] text-fg-subtle lg:border-l lg:border-t-0 lg:pl-8 lg:pt-2">
-                  {substrate.metadata.map(([label, value]) => (
-                    <div key={label}>
-                      <dt className="uppercase tracking-[0.08em] text-teal">
-                        {label}
-                      </dt>
-                      <dd className="mt-1">{value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </article>
-          </ScrollReveal>
-        </div>
+              ))}
+            </dl>
+          </article>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -1,58 +1,34 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Fraunces, Newsreader, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const fraunces = localFont({
-  src: [
-    {
-      path: "../public/fonts/fraunces-latin-standard-normal.woff2",
-      weight: "400 900",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/fraunces-latin-standard-italic.woff2",
-      weight: "400 900",
-      style: "italic",
-    },
-  ],
+const fraunces = Fraunces({
+  subsets: ["latin"],
   variable: "--font-display",
+  style: ["normal", "italic"],
   display: "swap",
+  axes: ["opsz"],
 });
 
-const geist = localFont({
-  src: [
-    {
-      path: "../public/fonts/geist-latin-400-normal.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/geist-latin-500-normal.woff2",
-      weight: "500",
-      style: "normal",
-    },
-  ],
+const newsreader = Newsreader({
+  subsets: ["latin"],
   variable: "--font-body",
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const geistMono = localFont({
-  src: [
-    {
-      path: "../public/fonts/geist-mono-latin-400-normal.woff2",
-      weight: "400",
-      style: "normal",
-    },
-  ],
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
   variable: "--font-mono",
+  weight: ["400", "500"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Yassin Al-Yassin — Building Substrate",
   description:
-    "I build AI agents for the engineers who design the physical world. Currently building Substrate — the agentic platform for deep-tech engineering.",
+    "Hardware engineer building agentic AI for the engineers who design the physical world. Currently building Substrate — the agentic platform for deep-tech engineering.",
   metadataBase: new URL("https://yassinalyassin.com"),
   openGraph: {
     title: "Yassin Al-Yassin",
@@ -79,7 +55,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={`${fraunces.variable} ${geist.variable} ${geistMono.variable}`}
+      className={`${fraunces.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
     >
       <body>
         <a className="skip-link" href="#main">
