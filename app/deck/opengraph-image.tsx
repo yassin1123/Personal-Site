@@ -17,41 +17,76 @@ export default function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#0E0D0C",
-          color: "#F2EDE5",
+          background: "#F4EFE6",
+          color: "#1C1A17",
           padding: "74px 84px",
+          position: "relative",
         }}
       >
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 4,
+            background:
+              "linear-gradient(90deg, #9C4221 0%, #8A6D3B 55%, transparent 100%)",
+          }}
+        />
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
-              fontSize: 112,
-              lineHeight: 1,
-              letterSpacing: "-0.045em",
+              fontFamily: "monospace",
+              fontSize: 17,
+              letterSpacing: "0.14em",
+              color: "#9C4221",
+              textTransform: "uppercase",
             }}
           >
-            Substrate.
+            Substrate · Problem Validated
           </div>
           <div
             style={{
-              marginTop: 42,
-              maxWidth: 770,
-              fontStyle: "italic",
-              fontSize: 42,
-              lineHeight: 1.13,
-              letterSpacing: "-0.025em",
-              color: "#A39C92",
+              marginTop: 56,
+              display: "flex",
+              flexWrap: "wrap",
+              fontSize: 108,
+              lineHeight: 0.95,
+              letterSpacing: "-0.04em",
+              maxWidth: 920,
+              fontWeight: 400,
             }}
           >
-            AI agents for the physical world.
+            <span>AI agents for the&nbsp;</span>
+            <span style={{ fontStyle: "italic", color: "#9C4221" }}>
+              physical
+            </span>
+            <span>&nbsp;world.</span>
+          </div>
+          <div
+            style={{
+              marginTop: 44,
+              maxWidth: 800,
+              fontStyle: "italic",
+              fontSize: 38,
+              lineHeight: 1.18,
+              letterSpacing: "-0.02em",
+              color: "#3A352E",
+            }}
+          >
+            The agentic platform for deep-tech engineering.
           </div>
         </div>
 
         <div
           style={{
             alignSelf: "flex-end",
-            fontSize: 18,
-            color: "#E8A656",
+            fontFamily: "monospace",
+            fontSize: 15,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "#6B6457",
           }}
         >
           yassinalyassin.com/deck

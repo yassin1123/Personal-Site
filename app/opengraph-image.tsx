@@ -18,18 +18,30 @@ export default async function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#0E0D0C",
-          color: "#F2EDE5",
+          background: "#F4EFE6",
+          color: "#1C1A17",
           padding: "74px 84px",
+          position: "relative",
         }}
       >
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 4,
+            background:
+              "linear-gradient(90deg, #9C4221 0%, #8A6D3B 55%, transparent 100%)",
+          }}
+        />
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
               fontFamily: "monospace",
               fontSize: 17,
-              letterSpacing: "0.08em",
-              color: "#E8A656",
+              letterSpacing: "0.14em",
+              color: "#9C4221",
               textTransform: "uppercase",
             }}
           >
@@ -42,22 +54,33 @@ export default async function Image() {
               flexDirection: "column",
               fontSize: 112,
               lineHeight: 0.92,
-              letterSpacing: "-0.045em",
+              letterSpacing: "-0.04em",
               maxWidth: 760,
+              fontWeight: 400,
             }}
           >
             <div>Yassin</div>
-            <div>Al-Yassin</div>
+            <div style={{ display: "flex" }}>
+              <span>Al-</span>
+              <span
+                style={{
+                  fontStyle: "italic",
+                  color: "#9C4221",
+                }}
+              >
+                Yassin
+              </span>
+            </div>
           </div>
           <div
             style={{
               marginTop: 52,
-              maxWidth: 770,
+              maxWidth: 800,
               fontStyle: "italic",
-              fontSize: 42,
-              lineHeight: 1.13,
-              letterSpacing: "-0.025em",
-              color: "#A39C92",
+              fontSize: 38,
+              lineHeight: 1.18,
+              letterSpacing: "-0.02em",
+              color: "#3A352E",
             }}
           >
             {profile.tagline}
@@ -67,8 +90,11 @@ export default async function Image() {
         <div
           style={{
             alignSelf: "flex-end",
-            fontSize: 18,
-            color: "#E8A656",
+            fontFamily: "monospace",
+            fontSize: 15,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "#6B6457",
           }}
         >
           yassinalyassin.com

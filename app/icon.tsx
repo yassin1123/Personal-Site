@@ -16,9 +16,11 @@ export default async function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0E0D0C",
-          color: "#E8A656",
+          background: "#F4EFE6",
+          color: "#9C4221",
           fontSize: 22,
+          fontStyle: "italic",
+          fontWeight: 500,
           lineHeight: 1,
         }}
       >
