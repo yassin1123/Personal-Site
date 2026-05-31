@@ -9,7 +9,6 @@ const EMAIL = "yassinalyassin771@gmail.com";
 const LINKS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/yassinalyassin", external: true },
   { label: "GitHub", href: "https://github.com/yassin1123", external: true },
-  { label: "CV (PDF)", href: "/cv.pdf", external: false },
   { label: "Substrate deck", href: "/deck", external: false },
 ] as const;
 

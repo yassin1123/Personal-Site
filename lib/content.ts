@@ -8,7 +8,6 @@ export const profile = {
     linkedin: "https://www.linkedin.com/in/yassinalyassin",
     github: "https://github.com/yassin1123",
   },
-  cv: "/cv.pdf",
   substrateDeck: "/substrate-deck.pdf",
 } as const;
 
@@ -19,7 +18,6 @@ export const footerLinks = [
     external: true,
   },
   { label: "GitHub", href: "https://github.com/yassin1123", external: true },
-  { label: "CV (PDF)", href: "/cv.pdf", external: false },
   { label: "Substrate deck", href: "/deck", external: false },
 ] as const;
 
