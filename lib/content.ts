@@ -93,10 +93,10 @@ export const work = [
     body: "Co-president of a ~150-person chapter; led recruitment of 40+ consultants; sourced and led engagements with Cancer Research UK and British Heart Foundation.",
   },
   {
-    title: "Blackmont Consulting",
-    kind: "PROJECT MANAGER",
+    title: "MyTender.io",
+    kind: "AI INTERN",
     year: "2025",
-    body: "Led MyTender.io build (multi-agent LLM tender platform) with founders. Drove ~75 sign-ups; promoted from Consultant after the Gononet Technologies engagement.",
+    body: "Early-stage AI startup building a multi-agent LLM platform for tender management. Joined as an intern but worked across the whole product alongside the CEO — integrating LLM APIs (OpenAI, Anthropic), fine-tuning models, cleaning data, and building backend. Helped drive ~50 sign-ups.",
   },
   {
     title: "Zepler Prize",
