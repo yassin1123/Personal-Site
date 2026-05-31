@@ -57,6 +57,12 @@ export const work = [
     body: "Multi-agent AI product built solo and deployed to 150 users across 180DC Southampton. £3K Enterprise Prize. Pitched at Future Worlds. Closed May 2026 to focus on Substrate.",
   },
   {
+    title: "DormDrop",
+    kind: "VENTURE",
+    year: "2024–25",
+    body: "24/7 peer-to-peer student delivery platform, built solo and shipped to hundreds of students at the University of Southampton. Full production stack — Stripe payments, live GPS tracking, real-time order flow, admin dashboard. ~12k lines of TypeScript. Shut down mid-second-semester after the university stepped in.",
+  },
+  {
     title: "AMD Pervasive AI Contest",
     kind: "COMPETITION",
     year: "2025",

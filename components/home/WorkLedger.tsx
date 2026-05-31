@@ -7,6 +7,7 @@ import { work } from "@/lib/content";
 
 const EXTRA_LINKS: Record<string, string[]> = {
   "AMD Pervasive AI Contest": ["Codebase & trained artefacts available"],
+  DormDrop: ["Codebase available"],
 };
 
 export function WorkLedger() {
