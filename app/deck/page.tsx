@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { DeckHero } from "@/components/DeckHero";
+import { Footer } from "@/components/Footer";
 import { MotionProvider } from "@/components/MotionProvider";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { FooterScrollLink } from "@/components/ui/FooterScrollLink";
+import { BackNav } from "@/components/chrome/BackNav";
+import { ScrollProgress } from "@/components/chrome/ScrollProgress";
 import { profile } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -21,43 +22,44 @@ export const metadata: Metadata = {
 
 const agents = [
   {
-    status: "● BUILDING",
-    agent: "TRACER",
+    status: "● Building",
+    code: "Tracer",
     headline: "Modernise legacy circuits",
-    description: "A verifiable copilot that reverse-engineers legacy circuits step by step. The wedge. Core primitive proven at AMD; MVP in development.",
+    description:
+      "A verifiable copilot that reverse-engineers legacy circuits step by step. The wedge. Core primitive proven at AMD; MVP in development.",
     featured: true,
   },
   {
-    status: "DIRECTION",
-    agent: "SCHEMATIC",
+    status: "Direction",
+    code: "Schematic",
     headline: "Design new circuits",
     description: "Generates new circuit designs from functional intent.",
     featured: false,
   },
   {
-    status: "DIRECTION",
-    agent: "EMBEDDED",
+    status: "Direction",
+    code: "Embedded",
     headline: "Low-level firmware",
     description: "Writes and verifies embedded code against real hardware.",
     featured: false,
   },
   {
-    status: "DIRECTION",
-    agent: "MECHANICAL",
+    status: "Direction",
+    code: "Mechanical",
     headline: "3D / CAD generation",
     description: "Produces parametric mechanical designs from spec.",
     featured: false,
   },
   {
-    status: "DIRECTION",
-    agent: "SILICON",
+    status: "Direction",
+    code: "Silicon",
     headline: "Chip design & verification",
     description: "Agentic RTL design, synthesis, and verification.",
     featured: false,
   },
   {
-    status: "DIRECTION",
-    agent: "ASSEMBLY",
+    status: "Direction",
+    code: "Assembly",
     headline: "Chip packaging & assembly",
     description: "Optimises packaging, layout, and assembly workflows.",
     featured: false,
@@ -90,25 +92,25 @@ const wedgeReasons = [
 const evidence = [
   {
     figure: "2nd",
-    subtitle: "OF 100+ TEAMS",
+    subtitle: "of 100+ teams",
     title: "AMD Pervasive AI Contest",
     body: "Team of 4. I led and built the circuits parser and core circuit-reasoning logic — the primitive Tracer is being built on. Codebase and trained artefacts available.",
   },
   {
     figure: "150",
-    subtitle: "USER DEPLOYMENT",
+    subtitle: "User deployment",
     title: "Argus (prior venture)",
     body: "Multi-agent AI I built solo and deployed across 180DC Southampton. Proof I can take agentic systems from prototype to real users.",
   },
   {
     figure: "£3K",
-    subtitle: "FUTURE WORLDS PRIZE",
+    subtitle: "Future Worlds prize",
     title: "Argus, pitched and funded",
     body: "Argus won the Future Worlds Enterprise Prize and was pitched at Future Worlds. Proof I can build venture-grade product and pitch it to investors.",
   },
   {
     figure: "1st",
-    subtitle: "OF ~15 TEAMS",
+    subtitle: "of ~15 teams",
     title: "BAE Systems Hack the Future",
     body: "End-to-end hardware + networking + backend + UI in 24 hours. The hardware fluency almost no AI founder has.",
   },
@@ -116,19 +118,19 @@ const evidence = [
 
 const whyNow = [
   {
-    number: "01.",
+    number: "01",
     claim:
       "Multimodal frontier models can finally read schematics, datasheets, and CAD in the same pass.",
     support: "The visual half of engineering is finally tractable.",
   },
   {
-    number: "02.",
+    number: "02",
     claim: "Agentic orchestration crossed the reliability line.",
     support:
-      "Tool-using, multi-step agents are now production-grade. The piece needed to make a verifiable copilot feel real.",
+      "Tool-using, multi-step agents are now production-grade — the piece needed to make a verifiable copilot feel real.",
   },
   {
-    number: "03.",
+    number: "03",
     claim:
       "Defence reshoring and American Dynamism made this commercially urgent.",
     support:
@@ -136,60 +138,34 @@ const whyNow = [
   },
 ] as const;
 
-function DeckTopBar() {
+function SectionLabel({ num, name }: { num: string; name: string }) {
   return (
-    <div className="sticky top-0 z-40 h-14 border-b border-border-soft bg-bg/80 px-4 backdrop-blur sm:px-8 lg:px-12">
-      <div className="mx-auto grid h-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-4">
-        <Link
-          href="/"
-          className="font-mono text-xs uppercase tracking-[0.08em] text-fg-subtle transition-colors hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
-        >
-          ← BACK TO HOME
-        </Link>
-        <span className="font-serif text-xl font-medium tracking-[-0.02em] text-fg">
-          Substrate
-        </span>
-        <a
-          href={profile.substrateDeck}
-          download
-          className="justify-self-end font-mono text-xs uppercase tracking-[0.08em] text-fg-subtle transition-colors hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
-        >
-          DOWNLOAD PDF ↓
-        </a>
-      </div>
+    <div className="mb-5 flex items-baseline gap-4">
+      <span className="font-mono text-[0.66rem] uppercase tracking-[0.16em] text-accent">
+        {num}
+      </span>
+      <span className="font-mono text-[0.66rem] uppercase tracking-[0.12em] text-fg-subtle">
+        {name}
+      </span>
     </div>
   );
 }
 
-function DeckSection({
+function SectionShell({
   id,
-  label,
+  alt = false,
   children,
-  className = "",
 }: {
   id?: string;
-  label: string;
+  alt?: boolean;
   children: React.ReactNode;
-  className?: string;
 }) {
   return (
     <section
       id={id}
-      className={[
-        "grid min-h-screen content-center border-t border-border-soft px-6 py-20 sm:px-10 lg:px-16",
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      className={`relative px-6 py-24 sm:px-10 lg:px-16 lg:py-28 ${alt ? "bg-bg-elevated" : ""}`}
     >
-      <div className="mx-auto w-full max-w-6xl">
-        <ScrollReveal>
-          <p className="font-mono text-xs uppercase tracking-[0.08em] text-accent">
-            {label}
-          </p>
-        </ScrollReveal>
-        {children}
-      </div>
+      <div className="mx-auto max-w-[1180px]">{children}</div>
     </section>
   );
 }
@@ -197,323 +173,438 @@ function DeckSection({
 export default function DeckPage() {
   return (
     <MotionProvider>
-      <DeckTopBar />
-      <main>
+      <ScrollProgress />
+      <BackNav
+        links={[
+          { href: "#gap", label: "The gap" },
+          { href: "#proven", label: "Proof" },
+          {
+            href: profile.substrateDeck,
+            label: "Download PDF ↓",
+            cta: true,
+            external: true,
+            download: true,
+          },
+        ]}
+      />
+
+      <main id="main">
         <DeckHero />
 
-        <DeckSection id="gap" label="01 / THE GAP">
-          <div className="mt-12 grid gap-4 lg:grid-cols-2">
-            <ScrollReveal delay={0.05}>
-              <div className="min-h-[20rem] bg-bg-elevated p-7 sm:p-9">
-                <p className="font-mono text-xs uppercase tracking-[0.08em] text-accent">
-                  SOFTWARE
+        {/* 01 THE GAP */}
+        <SectionShell id="gap">
+          <ScrollReveal>
+            <SectionLabel num="01" name="The gap" />
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.06}>
+            <div className="mt-8 grid gap-px overflow-hidden rounded-[4px] border border-border bg-border md:grid-cols-2">
+              <div className="bg-bg p-8 sm:p-10 lg:p-12">
+                <p className="mb-5 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-fg-subtle">
+                  Software
                 </p>
-                <h2 className="mt-8 max-w-[11ch] font-serif text-3xl font-medium leading-[1.04] tracking-[-0.035em] text-fg sm:text-5xl">
+                <h3
+                  className="mb-4 font-serif leading-[1.05] tracking-[-0.025em] text-fg"
+                  style={{
+                    fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+                    fontWeight: 380,
+                  }}
+                >
                   Cursor. Copilot. Devin. Lovable.
-                </h2>
-                <p className="mt-8 max-w-[35ch] text-base leading-[1.6] text-fg-muted">
+                </h3>
+                <p className="text-[1.02rem] leading-[1.6] text-fg-muted">
                   Multi-billion-dollar AI companies. Every fund has a thesis;
                   every grad with an LLM API key is launching one.
                 </p>
               </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.1}>
-              <div className="min-h-[20rem] p-7 sm:p-9">
-                <p className="font-mono text-xs uppercase tracking-[0.08em] text-accent">
-                  HARDWARE
+              <div className="bg-fg p-8 text-[color:var(--ink-on-dark)] sm:p-10 lg:p-12">
+                <p
+                  className="mb-5 font-mono text-[0.62rem] uppercase tracking-[0.16em]"
+                  style={{ color: "rgba(244,239,230,0.55)" }}
+                >
+                  Hardware
                 </p>
-                <h2 className="mt-8 font-serif text-5xl font-medium leading-none tracking-[-0.04em] text-fg sm:text-7xl">
+                <h3
+                  className="mb-4 font-serif leading-[1.05] tracking-[-0.025em] text-accent-soft"
+                  style={{
+                    fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+                    fontWeight: 380,
+                  }}
+                >
                   Nothing.
-                </h2>
-                <p className="mt-8 max-w-[35ch] text-base leading-[1.6] text-fg-muted">
+                </h3>
+                <p
+                  className="text-[1.02rem] leading-[1.6]"
+                  style={{ color: "rgba(244,239,230,0.78)" }}
+                >
                   The engineers designing chips, satellites, defence systems,
                   energy grids, and medical devices still work in tools from the
                   1990s. The AI revolution skipped them.
                 </p>
               </div>
-            </ScrollReveal>
-          </div>
+            </div>
+          </ScrollReveal>
 
-          <ScrollReveal delay={0.15}>
-            <p className="mx-auto mt-12 max-w-[70ch] text-center font-serif text-2xl italic leading-[1.18] tracking-[-0.025em] text-fg">
+          <ScrollReveal delay={0.12}>
+            <p className="mt-9 max-w-[680px] font-serif text-[1.25rem] italic leading-[1.3] text-fg">
               To build the platform for them, you need a founder fluent in both
               worlds. The intersection is empty.
             </p>
           </ScrollReveal>
-        </DeckSection>
+        </SectionShell>
 
-        <DeckSection label="02 / SUBSTRATE">
-          <ScrollReveal delay={0.05}>
-            <h2 className="mt-10 max-w-[14ch] font-serif text-5xl font-normal leading-[0.98] tracking-[-0.045em] text-fg md:text-6xl">
-              The agentic platform for deep-tech engineering.
+        {/* 02 SUBSTRATE */}
+        <SectionShell id="substrate" alt>
+          <ScrollReveal>
+            <SectionLabel num="02" name="Substrate" />
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.06}>
+            <h2
+              className="mb-5 max-w-[18ch] font-serif leading-[1.05] tracking-[-0.028em] text-fg"
+              style={{
+                fontSize: "clamp(2.2rem, 5.2vw, 3.8rem)",
+                fontWeight: 360,
+              }}
+            >
+              The agentic platform for{" "}
+              <em
+                className="not-italic font-serif italic text-accent"
+                style={{ fontWeight: 360 }}
+              >
+                deep-tech engineering.
+              </em>
             </h2>
-            <p className="mt-7 max-w-[60ch] text-lg leading-[1.55] text-fg-muted">
+            <p className="mb-5 max-w-[680px] text-[1.12rem] leading-[1.6] text-fg-muted">
               Tracer first. The other agents are the direction — each unlocked
               by the data and engineer trust the previous one earns.
             </p>
           </ScrollReveal>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {agents.map((agent, index) => (
-              <ScrollReveal key={agent.agent} delay={index * 0.05}>
+          <ScrollReveal delay={0.12}>
+            <div className="mt-10 grid gap-px overflow-hidden rounded-[4px] border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+              {agents.map((agent) => (
                 <article
-                  className={[
-                    "relative min-h-48 border border-border p-5 transition-colors hover:bg-bg-elevated",
-                    agent.featured ? "border-accent" : "",
-                  ]
-                    .filter(Boolean)
-                    .join(" ")}
+                  key={agent.code}
+                  className="relative bg-bg p-7 transition-colors duration-500 hover:bg-bg-elevated"
+                  style={{
+                    transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+                  }}
                 >
+                  {agent.featured ? (
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-x-0 top-0 h-[2px] bg-accent"
+                    />
+                  ) : null}
                   <p
-                    className={[
-                      "text-right font-mono text-xs uppercase tracking-[0.08em]",
-                      agent.featured ? "text-teal" : "text-fg-subtle",
-                    ]
-                      .filter(Boolean)
-                      .join(" ")}
+                    className={`mb-4 inline-block font-mono text-[0.58rem] uppercase tracking-[0.13em] ${
+                      agent.featured ? "text-accent" : "text-fg-subtle"
+                    }`}
                   >
                     {agent.status}
                   </p>
-                  <p className="mt-8 font-mono text-xs uppercase tracking-[0.08em] text-fg-subtle">
-                    {agent.agent}
+                  <p className="mb-[10px] font-mono text-[0.68rem] uppercase tracking-[0.12em] text-fg-subtle">
+                    {agent.code}
                   </p>
-                  <h3 className="mt-4 font-serif text-xl font-medium leading-[1.12] tracking-[-0.025em] text-fg">
+                  <h4
+                    className="mb-2 font-serif text-[1.32rem] leading-[1.1] tracking-[-0.018em] text-fg"
+                    style={{ fontWeight: 420 }}
+                  >
                     {agent.headline}
-                  </h3>
-                  <p className="mt-3 text-sm leading-[1.5] text-fg-muted">
+                  </h4>
+                  <p className="text-[0.95rem] leading-[1.5] text-fg-muted">
                     {agent.description}
                   </p>
                 </article>
-              </ScrollReveal>
-            ))}
-          </div>
+              ))}
+            </div>
+          </ScrollReveal>
 
-          <ScrollReveal delay={0.15}>
-            <p className="mx-auto mt-10 max-w-[62ch] text-center font-serif text-xl italic leading-[1.24] tracking-[-0.02em] text-fg">
-              What Cursor is to software, Substrate is being built to be for the rest.
+          <ScrollReveal delay={0.16}>
+            <p className="mt-9 max-w-[680px] font-serif text-[1.25rem] italic leading-[1.3] text-fg">
+              What Cursor is to software, Substrate is being built to be for the
+              rest.
             </p>
           </ScrollReveal>
-        </DeckSection>
+        </SectionShell>
 
-        <DeckSection label="03 / THE WEDGE">
-          <ScrollReveal delay={0.05}>
-            <h2 className="mt-10 font-serif text-5xl font-normal leading-none tracking-[-0.045em] text-fg md:text-6xl">
+        {/* 03 THE WEDGE */}
+        <SectionShell id="wedge">
+          <ScrollReveal>
+            <SectionLabel num="03" name="The wedge" />
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.06}>
+            <h2
+              className="mb-5 max-w-[18ch] font-serif leading-[1.05] tracking-[-0.028em] text-fg"
+              style={{
+                fontSize: "clamp(2.2rem, 5.2vw, 3.8rem)",
+                fontWeight: 360,
+              }}
+            >
               We start with Tracer.
             </h2>
-            <p className="mt-6 max-w-[50ch] font-serif text-2xl italic leading-[1.18] tracking-[-0.025em] text-fg-muted">
-              A verifiable copilot that helps engineers modernise legacy electronic circuits — step by step, engineer-in-the-loop.
+            <p className="mb-5 max-w-[680px] text-[1.12rem] leading-[1.6] text-fg-muted">
+              A verifiable copilot that helps engineers modernise legacy
+              electronic circuits — step by step, engineer-in-the-loop.
             </p>
           </ScrollReveal>
 
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {wedgeReasons.map((reason, index) => (
-              <ScrollReveal key={reason.number} delay={index * 0.05}>
-                <article className="border-t border-border pt-5">
-                  <p className="font-mono text-xs text-accent">
+          <ScrollReveal delay={0.12}>
+            <div className="mt-10 grid gap-px overflow-hidden rounded-[4px] border border-border bg-border md:grid-cols-2">
+              {wedgeReasons.map((reason) => (
+                <article
+                  key={reason.number}
+                  className="bg-bg p-8 transition-colors duration-500 hover:bg-bg-elevated"
+                  style={{
+                    transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+                  }}
+                >
+                  <div
+                    className="mb-4 font-serif italic leading-none text-accent"
+                    style={{ fontSize: "2.2rem", fontWeight: 340 }}
+                  >
                     {reason.number}
-                  </p>
-                  <h3 className="mt-6 font-serif text-xl font-medium leading-[1.12] tracking-[-0.025em] text-fg">
+                  </div>
+                  <h4
+                    className="mb-3 font-serif text-[1.28rem] tracking-[-0.015em] text-fg"
+                    style={{ fontWeight: 440 }}
+                  >
                     {reason.claim}
-                  </h3>
-                  <p className="mt-4 max-w-[30ch] text-sm leading-[1.52] text-fg-muted">
+                  </h4>
+                  <p className="text-[0.98rem] leading-[1.6] text-fg-muted">
                     {reason.body}
                   </p>
                 </article>
-              </ScrollReveal>
-            ))}
-          </div>
+              ))}
+            </div>
+          </ScrollReveal>
 
-          <ScrollReveal delay={0.15}>
-            <p className="mx-auto mt-14 max-w-[62ch] text-center font-serif text-xl italic leading-[1.24] tracking-[-0.02em] text-fg">
-              Tracer is the wedge. The platform compounds underneath as engagements accumulate.
+          <ScrollReveal delay={0.16}>
+            <p className="mt-9 max-w-[680px] font-serif text-[1.25rem] italic leading-[1.3] text-fg">
+              Tracer is the wedge. The platform compounds underneath as
+              engagements accumulate.
             </p>
           </ScrollReveal>
-        </DeckSection>
+        </SectionShell>
 
-        <DeckSection label="04 / WHAT'S PROVEN">
-          <ScrollReveal delay={0.05}>
-            <h2 className="mt-10 max-w-[18ch] font-serif text-5xl font-normal leading-[0.98] tracking-[-0.045em] text-fg md:text-6xl">
-              The hardest part is proven. The plan is grounded in real engineer pain.
+        {/* 04 WHAT'S PROVEN */}
+        <SectionShell id="proven" alt>
+          <ScrollReveal>
+            <SectionLabel num="04" name="What's proven" />
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.06}>
+            <h2
+              className="mb-10 max-w-[20ch] font-serif leading-[1.05] tracking-[-0.028em] text-fg"
+              style={{
+                fontSize: "clamp(2.2rem, 5.2vw, 3.8rem)",
+                fontWeight: 360,
+              }}
+            >
+              The hardest part is proven. The plan is grounded in real engineer
+              pain.
             </h2>
           </ScrollReveal>
 
-          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {evidence.map((item, index) => (
-              <ScrollReveal key={item.figure} delay={index * 0.1}>
-                <article>
-                  <p className="font-serif text-7xl font-normal leading-none tracking-[-0.055em] text-fg">
+          <ScrollReveal delay={0.12}>
+            <div className="grid gap-px overflow-hidden rounded-[4px] border border-border bg-border md:grid-cols-2">
+              {evidence.map((item) => (
+                <article
+                  key={item.figure}
+                  className="bg-bg p-8 transition-colors duration-500 hover:bg-bg-elevated"
+                  style={{
+                    transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+                  }}
+                >
+                  <div
+                    className="mb-1 font-serif leading-[0.9] tracking-[-0.03em] text-fg"
+                    style={{
+                      fontSize: "clamp(2.8rem, 6vw, 4.2rem)",
+                      fontWeight: 330,
+                    }}
+                  >
                     {item.figure}
-                  </p>
-                  <p className="mt-4 font-mono text-xs uppercase tracking-[0.08em] text-accent">
+                  </div>
+                  <p className="mb-5 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-accent">
                     {item.subtitle}
                   </p>
-                  <h3 className="mt-7 font-serif text-xl font-medium leading-[1.12] tracking-[-0.025em] text-fg">
+                  <h4
+                    className="mb-3 font-serif text-[1.22rem] tracking-[-0.015em] text-fg"
+                    style={{ fontWeight: 440 }}
+                  >
                     {item.title}
-                  </h3>
-                  <p className="mt-4 max-w-[30ch] text-sm leading-[1.52] text-fg-muted">
+                  </h4>
+                  <p className="text-[0.96rem] leading-[1.6] text-fg-muted">
                     {item.body}
                   </p>
                 </article>
-              </ScrollReveal>
-            ))}
-          </div>
-
-          <ScrollReveal delay={0.2}>
-            <article className="mt-20 border-t border-border pt-10">
-              <p className="font-mono text-xs uppercase tracking-[0.08em] text-accent">
-                DISCOVERY
-              </p>
-              <h3 className="mt-6 max-w-[22ch] font-serif text-4xl font-normal leading-[1.02] tracking-[-0.04em] text-fg md:text-5xl">
-                What engineers told me.
-              </h3>
-              <div className="mt-10 grid gap-10 lg:grid-cols-2">
-                <div className="space-y-5 text-base leading-[1.6] text-fg-muted">
-                  <p>
-                    I interviewed practising engineers at firms specialising in
-                    modernisation, and at defence and biomedical companies that
-                    also do modernisation work.
-                  </p>
-                  <p>
-                    The signal was consistent: legacy circuit and system
-                    modernisation is real, painful, and they urgently need a
-                    faster way to do it.
-                  </p>
-                </div>
-                <div className="space-y-5">
-                  <p className="font-serif text-xl italic leading-[1.3] tracking-[-0.02em] text-fg">
-                    &ldquo;Don&apos;t give us an autonomous black box. In our
-                    domain that just multiplies errors. Give us a tool that
-                    works step by step alongside the engineer, so we can verify
-                    every step.&rdquo;
-                  </p>
-                  <p className="text-sm leading-[1.55] text-fg-muted">
-                    Paraphrased from the engineer interviews. It is the design
-                    brief for Tracer: a verifiable copilot, not autopilot.
-                  </p>
-                </div>
-              </div>
-            </article>
+              ))}
+            </div>
           </ScrollReveal>
-        </DeckSection>
 
-        <DeckSection label="05 / WHY NOW">
-          <ScrollReveal delay={0.05}>
-            <h2 className="mt-10 max-w-[13ch] font-serif text-5xl font-normal leading-[0.98] tracking-[-0.045em] text-fg md:text-6xl">
-              AI finished software. Deep-tech is what&apos;s next.
+          <ScrollReveal delay={0.18}>
+            <div
+              className="mt-12 rounded-[4px] border border-border border-l-[3px] border-l-accent bg-bg p-8 sm:p-12 lg:p-14"
+            >
+              <p className="mb-6 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-fg-subtle">
+                Discovery · What engineers told me
+              </p>
+              <blockquote
+                className="mb-6 font-serif italic leading-[1.3] tracking-[-0.02em] text-fg"
+                style={{
+                  fontSize: "clamp(1.5rem, 3.4vw, 2.2rem)",
+                  fontWeight: 340,
+                }}
+              >
+                &ldquo;Don&apos;t give us an autonomous black box. In our domain
+                that just multiplies errors. Give us a tool that works step by
+                step alongside the engineer, so we can verify every step.&rdquo;
+              </blockquote>
+              <p className="max-w-[680px] text-[1rem] leading-[1.6] text-fg-muted">
+                I interviewed practising engineers at firms specialising in
+                modernisation, and at defence and biomedical companies that
+                also do modernisation work. The signal was consistent: legacy
+                circuit and system modernisation is real, painful, and they
+                urgently need a faster way to do it. Paraphrased from the
+                interviews — it is the design brief for Tracer: a verifiable
+                copilot, not autopilot.
+              </p>
+            </div>
+          </ScrollReveal>
+        </SectionShell>
+
+        {/* 05 WHY NOW */}
+        <SectionShell id="whynow">
+          <ScrollReveal>
+            <SectionLabel num="05" name="Why now" />
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.06}>
+            <h2
+              className="mb-10 max-w-[15ch] font-serif leading-[1.05] tracking-[-0.028em] text-fg"
+              style={{
+                fontSize: "clamp(2.2rem, 5.2vw, 3.8rem)",
+                fontWeight: 360,
+              }}
+            >
+              AI finished software. Deep-tech is{" "}
+              <em
+                className="not-italic font-serif italic text-accent"
+                style={{ fontWeight: 360 }}
+              >
+                what&apos;s next.
+              </em>
             </h2>
           </ScrollReveal>
 
-          <div className="mt-14 space-y-9">
-            {whyNow.map((item, index) => (
-              <ScrollReveal key={item.number} delay={index * 0.15}>
-                <article className="grid gap-4 border-t border-border pt-7 md:grid-cols-[5rem_1fr]">
-                  <p className="font-mono text-3xl text-accent">
+          <ScrollReveal delay={0.12}>
+            <div className="border-b border-border">
+              {whyNow.map((item) => (
+                <article
+                  key={item.number}
+                  className="grid gap-[26px] border-t border-border py-8 md:grid-cols-[60px_1fr]"
+                >
+                  <div
+                    className="font-serif italic leading-[1.2] text-accent"
+                    style={{ fontSize: "1.6rem" }}
+                  >
                     {item.number}
-                  </p>
+                  </div>
                   <div>
-                    <h3 className="max-w-[34ch] font-serif text-2xl font-medium leading-[1.12] tracking-[-0.025em] text-fg">
+                    <h4
+                      className="mb-3 font-serif leading-[1.2] tracking-[-0.018em] text-fg"
+                      style={{
+                        fontSize: "clamp(1.3rem, 3vw, 1.7rem)",
+                        fontWeight: 420,
+                      }}
+                    >
                       {item.claim}
-                    </h3>
-                    <p className="mt-3 max-w-[70ch] font-serif text-lg italic leading-[1.35] tracking-[-0.015em] text-fg-muted">
+                    </h4>
+                    <p className="text-[1.02rem] leading-[1.6] text-fg-muted">
                       {item.support}
                     </p>
                   </div>
                 </article>
-              </ScrollReveal>
-            ))}
-          </div>
+              ))}
+            </div>
+          </ScrollReveal>
 
-          <ScrollReveal delay={0.2}>
-            <p className="mx-auto mt-12 max-w-[62ch] text-center font-serif text-xl italic leading-[1.24] tracking-[-0.02em] text-fg">
+          <ScrollReveal delay={0.18}>
+            <p className="mt-9 max-w-[680px] font-serif text-[1.25rem] italic leading-[1.3] text-fg">
               The window is open. It won&apos;t be for long.
             </p>
           </ScrollReveal>
-        </DeckSection>
+        </SectionShell>
 
-        <DeckSection label="06 / WHY ME">
-          <ScrollReveal delay={0.05}>
-            <h2 className="mt-10 max-w-[30ch] font-serif text-5xl font-normal leading-[0.98] tracking-[-0.045em] text-fg md:text-6xl">
+        {/* 06 WHY ME */}
+        <SectionShell id="whyme" alt>
+          <ScrollReveal>
+            <SectionLabel num="06" name="Why me" />
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.06}>
+            <h2
+              className="max-w-[22ch] font-serif leading-[1.1] tracking-[-0.028em] text-fg"
+              style={{
+                fontSize: "clamp(2rem, 5vw, 3.4rem)",
+                fontWeight: 350,
+              }}
+            >
               Most AI founders can&apos;t read a schematic.
             </h2>
-            <p className="mt-8 max-w-[24ch] font-serif text-3xl leading-[1.1] tracking-[-0.035em] text-fg-muted">
-              Most hardware engineers can&apos;t ship an agentic system.
-            </p>
-            <p className="mt-16 font-serif text-4xl leading-none tracking-[-0.04em] text-accent md:text-6xl">
-              I do both.
-            </p>
-            <p className="mt-12 max-w-5xl font-mono text-xs uppercase leading-[1.8] tracking-[0.08em] text-fg-subtle">
-              Second-year EE at Southampton · Zepler Prize · 2nd at AMD Pervasive
-              AI (led 4-person team, built the core) · 1st at BAE Hack the
-              Future · Argus built solo, deployed to 150 users · Tracer
-              validated through engineer interviews
+            <p
+              className="mt-5 max-w-[40ch] font-serif text-fg-muted"
+              style={{ fontSize: "clamp(1.4rem, 3vw, 2rem)" }}
+            >
+              Most hardware engineers can&apos;t ship an agentic system.{" "}
+              <em className="not-italic font-serif italic text-accent">
+                I do both.
+              </em>
             </p>
           </ScrollReveal>
-        </DeckSection>
 
-        <section
-          id="footer"
-          className="grid min-h-[80vh] content-center border-t border-border-soft px-6 py-20 sm:px-10 lg:px-16"
-        >
+          <ScrollReveal delay={0.14}>
+            <p className="mt-10 max-w-[760px] font-mono text-[0.72rem] uppercase leading-[2] tracking-[0.06em] text-fg-subtle">
+              Second-year EE at Southampton ·{" "}
+              <strong className="font-medium text-accent">Zepler Prize</strong> ·{" "}
+              <strong className="font-medium text-accent">
+                2nd at AMD Pervasive AI
+              </strong>{" "}
+              (led 4-person team, built the core) ·{" "}
+              <strong className="font-medium text-accent">
+                1st at BAE Hack the Future
+              </strong>{" "}
+              · Argus built solo, deployed to 150 users · Tracer validated
+              through engineer interviews
+            </p>
+          </ScrollReveal>
+        </SectionShell>
+
+        {/* KICKER */}
+        <section className="px-6 py-28 text-center sm:px-10 lg:py-32">
           <ScrollReveal>
-            <div className="mx-auto max-w-6xl text-center">
-              <h2 className="font-serif text-3xl font-normal leading-[1.15] tracking-[-0.04em] text-fg md:text-5xl">
-                Software ate the world.
-                <br />
-                AI agents are about to build it.
-                <br />
-                <em className="text-accent">Substrate is where they live.</em>
-              </h2>
-
-              <a
-                href={`mailto:${profile.email}`}
-                className="mt-16 inline-flex break-all font-serif text-2xl leading-[1.15] tracking-[-0.025em] text-fg transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+            <h2
+              className="mx-auto max-w-[20ch] font-serif leading-[1.18] tracking-[-0.03em] text-fg"
+              style={{
+                fontSize: "clamp(2rem, 5vw, 3.6rem)",
+                fontWeight: 340,
+              }}
+            >
+              Software ate the world. AI agents are about to build it.{" "}
+              <em
+                className="not-italic font-serif italic text-accent"
+                style={{ fontWeight: 340 }}
               >
-                {profile.email}
-              </a>
-
-              <div className="mt-10 flex flex-wrap justify-center gap-x-5 gap-y-3 font-mono text-xs uppercase tracking-[0.08em] text-fg-subtle">
-                <a
-                  href={profile.substrateDeck}
-                  download
-                  className="transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
-                >
-                  Download deck (PDF)
-                </a>
-                <span aria-hidden="true">·</span>
-                <a
-                  href={profile.socials.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
-                >
-                  LinkedIn
-                </a>
-                <span aria-hidden="true">·</span>
-                <a
-                  href={profile.socials.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
-                >
-                  GitHub
-                </a>
-                <span aria-hidden="true">·</span>
-                <Link
-                  href="/"
-                  className="transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
-                >
-                  Back to home
-                </Link>
-              </div>
-
-              <p className="mt-20 font-mono text-xs text-fg-subtle">
-                Yassin Al-Yassin · Founder, Substrate · 2026
-              </p>
-            </div>
+                Substrate is where they live.
+              </em>
+            </h2>
           </ScrollReveal>
         </section>
       </main>
+
+      <Footer />
     </MotionProvider>
   );
 }

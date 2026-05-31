@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
+import { BackNav } from "@/components/chrome/BackNav";
+import { ScrollProgress } from "@/components/chrome/ScrollProgress";
 import { notes, profile } from "@/lib/content";
 
 type NotePageProps = {
@@ -52,7 +54,7 @@ function renderInline(text: string) {
       return (
         <code
           key={`${part}-${index}`}
-          className="bg-bg-subtle px-1.5 py-0.5 font-mono text-base text-fg"
+          className="rounded-sm bg-bg-elevated px-1.5 py-0.5 font-mono text-[0.9em] text-fg"
         >
           {part.slice(1, -1)}
         </code>
@@ -65,7 +67,7 @@ function renderInline(text: string) {
         <a
           key={`${part}-${index}`}
           href={linkMatch[2]}
-          className="underline decoration-accent underline-offset-4 transition-colors hover:text-accent-soft"
+          className="underline decoration-accent decoration-1 underline-offset-4 transition-colors hover:text-accent"
         >
           {linkMatch[1]}
         </a>
@@ -74,7 +76,10 @@ function renderInline(text: string) {
 
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
-        <strong key={`${part}-${index}`} className="font-medium text-fg">
+        <strong
+          key={`${part}-${index}`}
+          className="font-medium text-fg"
+        >
           {part.slice(2, -2)}
         </strong>
       );
@@ -82,7 +87,7 @@ function renderInline(text: string) {
 
     if (part.startsWith("*") && part.endsWith("*")) {
       return (
-        <em key={`${part}-${index}`} className="font-serif text-fg">
+        <em key={`${part}-${index}`} className="font-serif italic text-fg">
           {part.slice(1, -1)}
         </em>
       );
@@ -202,14 +207,22 @@ function MarkdownBody({ body }: { body: string }) {
   flushParagraph();
   flushList();
 
+  let paragraphIndex = 0;
+
   return (
-    <div className="mt-14 max-w-2xl text-lg leading-[1.75] text-fg">
+    <div className="mt-12">
       {blocks.map((block, index) => {
         if (block.type === "h2") {
           return (
             <h2
               key={index}
-              className="mb-5 mt-12 font-serif text-2xl font-medium leading-[1.12] tracking-[-0.03em] text-fg"
+              className="mb-5 mt-12 font-serif text-fg"
+              style={{
+                fontSize: "clamp(1.6rem, 3.6vw, 2.2rem)",
+                fontWeight: 420,
+                letterSpacing: "-0.02em",
+                lineHeight: 1.15,
+              }}
             >
               {renderInline(block.content)}
             </h2>
@@ -220,7 +233,13 @@ function MarkdownBody({ body }: { body: string }) {
           return (
             <h3
               key={index}
-              className="mb-4 mt-9 font-serif text-xl font-medium leading-[1.15] tracking-[-0.025em] text-fg"
+              className="mb-4 mt-10 font-serif text-fg"
+              style={{
+                fontSize: "1.4rem",
+                fontWeight: 460,
+                letterSpacing: "-0.018em",
+                lineHeight: 1.2,
+              }}
             >
               {renderInline(block.content)}
             </h3>
@@ -231,7 +250,13 @@ function MarkdownBody({ body }: { body: string }) {
           return (
             <blockquote
               key={index}
-              className="my-10 border-l-2 border-accent pl-6 font-serif text-2xl italic leading-[1.25] tracking-[-0.025em] text-fg"
+              className="my-10 border-l-[3px] border-accent pl-6 font-serif italic text-fg"
+              style={{
+                fontSize: "clamp(1.5rem, 3.4vw, 2rem)",
+                fontWeight: 340,
+                lineHeight: 1.3,
+                letterSpacing: "-0.02em",
+              }}
             >
               {renderInline(block.content)}
             </blockquote>
@@ -242,7 +267,7 @@ function MarkdownBody({ body }: { body: string }) {
           return (
             <pre
               key={index}
-              className="my-8 max-w-3xl overflow-x-auto bg-bg-elevated p-5 font-mono text-sm leading-[1.65] text-fg-muted"
+              className="my-8 overflow-x-auto rounded-[3px] border border-border bg-bg-elevated p-5 font-mono text-sm leading-[1.65] text-fg-muted"
             >
               <code>{block.content}</code>
             </pre>
@@ -263,10 +288,21 @@ function MarkdownBody({ body }: { body: string }) {
           return (
             <ul
               key={index}
-              className="mb-8 list-disc space-y-3 pl-6 text-fg-muted marker:text-accent"
+              className="mb-8 space-y-3 pl-6 text-[1.1rem] leading-[1.62] text-fg-muted"
+              style={{ listStyle: "none" }}
             >
-              {block.items.map((item) => (
-                <li key={item}>{renderInline(item)}</li>
+              {block.items.map((item, i) => (
+                <li
+                  key={`${index}-${i}`}
+                  className="relative"
+                  style={{ paddingLeft: "0.2rem" }}
+                >
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-[-1.1rem] top-[0.75em] inline-block h-[6px] w-[6px] rounded-full bg-accent"
+                  />
+                  {renderInline(item)}
+                </li>
               ))}
             </ul>
           );
@@ -276,18 +312,42 @@ function MarkdownBody({ body }: { body: string }) {
           return (
             <ol
               key={index}
-              className="mb-8 list-decimal space-y-4 pl-6 text-fg-muted marker:font-mono marker:text-accent"
+              className="mb-8 space-y-4 pl-10 text-[1.1rem] leading-[1.62] text-fg-muted"
+              style={{
+                listStyle: "decimal-leading-zero",
+                color: "var(--accent)",
+              }}
             >
-              {block.items.map((item) => (
-                <li key={item}>{renderInline(item)}</li>
+              {block.items.map((item, i) => (
+                <li
+                  key={`${index}-${i}`}
+                  className="pl-1 font-mono marker:font-mono marker:text-[0.85em] marker:text-accent"
+                >
+                  <span className="font-serif text-fg-muted">
+                    {renderInline(item)}
+                  </span>
+                </li>
               ))}
             </ol>
           );
         }
 
         if (block.type === "p") {
+          const isLead = paragraphIndex === 0;
+          paragraphIndex += 1;
           return (
-            <p key={index} className="mb-6">
+            <p
+              key={index}
+              className={
+                isLead
+                  ? "mb-6 max-w-[680px] font-serif italic text-fg"
+                  : "mb-6 max-w-[680px] text-fg-muted"
+              }
+              style={{
+                fontSize: isLead ? "1.35rem" : "1.22rem",
+                lineHeight: isLead ? 1.5 : 1.72,
+              }}
+            >
               {renderInline(block.content)}
             </p>
           );
@@ -295,24 +355,6 @@ function MarkdownBody({ body }: { body: string }) {
 
         return null;
       })}
-    </div>
-  );
-}
-
-function NoteTopBar() {
-  return (
-    <div className="sticky top-0 z-40 h-14 border-b border-border-soft bg-bg/80 px-4 backdrop-blur sm:px-8 lg:px-12">
-      <div className="mx-auto flex h-full max-w-6xl items-center justify-between">
-        <Link
-          href="/"
-          className="font-mono text-xs uppercase tracking-[0.08em] text-fg-subtle transition-colors hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
-        >
-          ← Back to home
-        </Link>
-        <span className="font-serif text-xl font-medium tracking-[-0.02em] text-fg">
-          Notes
-        </span>
-      </div>
     </div>
   );
 }
@@ -327,35 +369,57 @@ export default async function NotePage({ params }: NotePageProps) {
 
   return (
     <>
-      <NoteTopBar />
-      <main className="px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
-        <article className="mx-auto max-w-2xl">
-          <p className="text-center font-mono text-xs text-fg-subtle">
-            {formatArticleDate(note.date)}
+      <ScrollProgress />
+      <BackNav
+        links={[
+          { href: "/#notes", label: "Notes" },
+          { href: "/deck", label: "Substrate deck →", cta: true },
+        ]}
+      />
+      <main id="main" className="px-6 sm:px-10 lg:px-16">
+        <article className="mx-auto max-w-[760px] pb-16 pt-40">
+          <p className="mb-6 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-accent">
+            {formatArticleDate(note.date)} · Notes
           </p>
 
-          <h1 className="mt-10 font-serif text-3xl font-medium leading-[1.05] tracking-[-0.035em] text-fg">
+          <h1
+            className="mb-5 font-serif leading-none text-fg"
+            style={{
+              fontSize: "clamp(2.6rem, 7vw, 4.6rem)",
+              fontWeight: 340,
+              letterSpacing: "-0.035em",
+            }}
+          >
             {note.title}
           </h1>
-          <p className="mt-5 font-serif text-xl italic leading-[1.24] tracking-[-0.02em] text-fg-muted">
+          <p
+            className="mb-12 font-serif italic text-fg-muted"
+            style={{
+              fontSize: "clamp(1.3rem, 3vw, 1.7rem)",
+            }}
+          >
             {note.subtitle}
           </p>
 
-          <div className="mt-10 h-px w-8 bg-accent" aria-hidden="true" />
+          <div className="mb-12 h-px bg-border" aria-hidden="true" />
 
           <MarkdownBody body={note.body} />
 
-          <div className="mt-16 border-t border-border pt-8">
-            <p className="font-serif text-xl tracking-[-0.02em] text-fg">
+          <div className="mt-14 border-t border-border pt-8">
+            <p
+              className="mb-1 font-serif text-[1.3rem] text-fg"
+              style={{ fontWeight: 460, letterSpacing: "-0.02em" }}
+            >
               {profile.name}
             </p>
-            <p className="mt-2 text-sm leading-[1.55] text-fg-muted">
+            <p className="mb-6 text-[1rem] text-fg-subtle">
               Founder of Substrate · Building agentic AI for deep-tech
               engineering.
             </p>
             <Link
               href="/#notes"
-              className="mt-8 inline-flex text-sm font-medium text-fg transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+              className="group inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.1em] text-accent transition-[gap] duration-300 hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+              style={{ transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
             >
               More notes →
             </Link>

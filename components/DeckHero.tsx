@@ -4,7 +4,7 @@ import * as m from "motion/react-m";
 import { FooterScrollLink } from "@/components/ui/FooterScrollLink";
 import { SmoothScrollLink } from "@/components/ui/SmoothScrollLink";
 
-const revealEase = [0.21, 0.47, 0.32, 0.98] as const;
+const heroEase = [0.16, 1, 0.3, 1] as const;
 
 const container = {
   hidden: { opacity: 0 },
@@ -12,70 +12,105 @@ const container = {
     opacity: 1,
     transition: {
       duration: 0.2,
-      staggerChildren: 0.06,
-      delayChildren: 0.08,
+      staggerChildren: 0.16,
+      delayChildren: 0.12,
     },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 8 },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: revealEase },
+    transition: { duration: 1.05, ease: heroEase },
   },
 };
 
 export function DeckHero() {
-  const words = ["AI", "agents", "for", "the", "physical", "world."];
-
   return (
-    <section className="relative grid min-h-screen px-6 py-20 sm:px-10 lg:px-16">
+    <header
+      id="top"
+      className="relative flex min-h-[96vh] flex-col justify-center px-6 pb-20 pt-32 sm:px-10 lg:px-16 lg:pt-40"
+    >
       <m.div
-        className="mx-auto grid w-full max-w-6xl content-end pb-16 lg:pb-24"
+        className="mx-auto w-full max-w-[1180px]"
         variants={container}
         initial="hidden"
         animate="show"
       >
-        <m.p
-          className="font-mono text-xs uppercase tracking-[0.08em] text-accent"
+        <m.div
           variants={item}
+          className="mb-9 flex items-center gap-[13px] font-mono text-[0.7rem] uppercase tracking-[0.14em] text-fg-subtle"
         >
-          ● BUILDING SUBSTRATE · PROBLEM VALIDATED
-        </m.p>
+          <span className="relative inline-block h-[7px] w-[7px] rounded-full bg-accent">
+            <span
+              aria-hidden="true"
+              className="absolute -inset-[5px] rounded-full border border-accent"
+              style={{
+                animation: "deckHeroPulse 2.6s cubic-bezier(0.16,1,0.3,1) infinite",
+              }}
+            />
+          </span>
+          Building Substrate · Problem Validated
+        </m.div>
 
-        <h1
-          className="mt-9 max-w-[10ch] font-serif text-7xl font-normal leading-[0.95] tracking-[-0.055em] text-fg md:text-8xl"
+        <m.h1
+          variants={item}
           aria-label="AI agents for the physical world."
+          className="mb-8 max-w-[14ch] font-serif font-normal leading-[0.95] tracking-[-0.035em] text-fg"
+          style={{
+            fontSize: "clamp(2.9rem, 8vw, 7rem)",
+            fontWeight: 330,
+          }}
         >
-          {words.map((word) => (
-            <m.span key={word} className="mr-[0.18em] inline-block" variants={item}>
-              {word}
-            </m.span>
-          ))}
-        </h1>
+          AI agents for the{" "}
+          <em
+            className="not-italic font-serif italic text-accent"
+            style={{ fontWeight: 330 }}
+          >
+            physical
+          </em>{" "}
+          world.
+        </m.h1>
 
         <m.p
-          className="mt-8 max-w-[50ch] font-serif text-2xl italic leading-[1.16] tracking-[-0.025em] text-fg-muted"
           variants={item}
+          className="mb-10 font-serif italic text-fg-muted"
+          style={{
+            fontSize: "clamp(1.3rem, 2.6vw, 1.8rem)",
+          }}
         >
           The agentic platform for deep-tech engineering.
         </m.p>
 
-        <m.div className="mt-10 flex flex-wrap gap-4" variants={item}>
-          <SmoothScrollLink href="#gap" variant="button">
+        <m.div variants={item} className="flex flex-wrap gap-[14px]">
+          <SmoothScrollLink
+            href="#gap"
+            variant="button"
+            className="group inline-flex items-center gap-2 rounded-[3px] bg-fg px-[22px] py-[13px] font-mono text-[0.72rem] uppercase tracking-[0.1em] text-bg transition-all duration-300 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+          >
             Read the thesis ↓
           </SmoothScrollLink>
-          <FooterScrollLink className="border border-border px-5 py-3 hover:border-accent">
+          <FooterScrollLink className="group inline-flex items-center gap-2 rounded-[3px] border border-border px-[22px] py-[13px] font-mono text-[0.72rem] uppercase tracking-[0.1em] text-fg transition-all duration-300 hover:border-fg hover:bg-bg-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50">
             Get in touch
+            <span
+              aria-hidden="true"
+              className="transition-transform duration-300 group-hover:translate-x-[3px] group-hover:-translate-y-[3px]"
+              style={{ transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
+            >
+              ↗
+            </span>
           </FooterScrollLink>
         </m.div>
       </m.div>
 
-      <p className="absolute bottom-7 left-6 font-mono text-xs uppercase tracking-[0.08em] text-fg-subtle sm:left-10 lg:left-16">
-        ↓ scroll
-      </p>
-    </section>
+      <style>{`
+        @keyframes deckHeroPulse {
+          0% { transform: scale(0.7); opacity: 0.9; }
+          70%, 100% { transform: scale(1.9); opacity: 0; }
+        }
+      `}</style>
+    </header>
   );
 }
