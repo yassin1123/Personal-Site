@@ -87,12 +87,6 @@ export const work = [
     body: "Computer-vision prototype on NVIDIA Jetson Orin Nano for object detection, tracking, and tamper-evident event logging. Designed for denied-network deployment with no cloud dependency.",
   },
   {
-    title: "Accenture — Data & AI Practice",
-    kind: "INCOMING INTERN",
-    year: "Summer 2026",
-    body: "Selected for the 12-week Data & AI summer internship in London.",
-  },
-  {
     title: "180 Degrees Consulting Southampton",
     kind: "VICE PRESIDENT",
     year: "2024–25",
