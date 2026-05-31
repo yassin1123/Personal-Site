@@ -50,14 +50,23 @@ export function SiteFooter() {
               }}
             >
               Building Substrate.
-              <br />
-              <em
-                className="not-italic font-serif italic"
-                style={{ color: "var(--accent-light)" }}
-              >
-                Open to the right early conversations.
-              </em>
             </h2>
+            <p
+              className="font-serif italic"
+              style={{
+                color: "var(--accent-light)",
+                fontWeight: 300,
+                fontStyle: "italic",
+                fontSize: "clamp(20px, 2.6vw, 30px)",
+                lineHeight: 1.32,
+                letterSpacing: "-0.012em",
+                maxWidth: "26ch",
+                marginTop: 18,
+              }}
+            >
+              If you modernise legacy circuits, build EDA tools, invest in
+              deep-tech AI, or want to join early, email me.
+            </p>
             <button
               type="button"
               onClick={copy}
