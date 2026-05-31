@@ -69,6 +69,12 @@ export const work = [
     body: "2nd of 100+ teams. Team of 4 — I led and built the circuits parser and core circuit-reasoning logic. The system takes a schematic and infers what each component is, what sub-circuits do, and what the whole circuit functionally does. This understanding layer is the genuinely hard part — and the primitive Tracer is being built on. Codebase and trained artefacts available; runnable on GPU hardware.",
   },
   {
+    title: "MyTender.io",
+    kind: "AI INTERN",
+    year: "2025",
+    body: "Early-stage AI startup building a multi-agent LLM platform for tender management. Joined as an intern but worked across the whole product alongside the CEO — integrating LLM APIs (OpenAI, Anthropic), fine-tuning models, cleaning data, and building backend. Helped drive ~50 sign-ups.",
+  },
+  {
     title: "BAE Systems Hack the Future",
     kind: "COMPETITION",
     year: "2026",
@@ -91,12 +97,6 @@ export const work = [
     kind: "VICE PRESIDENT",
     year: "2024–25",
     body: "Co-president of a ~150-person chapter; led recruitment of 40+ consultants; sourced and led engagements with Cancer Research UK and British Heart Foundation.",
-  },
-  {
-    title: "MyTender.io",
-    kind: "AI INTERN",
-    year: "2025",
-    body: "Early-stage AI startup building a multi-agent LLM platform for tender management. Joined as an intern but worked across the whole product alongside the CEO — integrating LLM APIs (OpenAI, Anthropic), fine-tuning models, cleaning data, and building backend. Helped drive ~50 sign-ups.",
   },
   {
     title: "Zepler Prize",
