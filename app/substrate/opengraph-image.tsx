@@ -1,13 +1,13 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Yassin Al-Yassin — Building Substrate";
+export const alt = "Substrate — AI agents for the physical world";
 export const size = {
   width: 1200,
   height: 630,
 };
 export const contentType = "image/png";
 
-export default async function Image() {
+export default function Image() {
   return new ImageResponse(
     (
       <div
@@ -34,7 +34,6 @@ export default async function Image() {
               "linear-gradient(90deg, #2E6B4F 0%, #8A6D3B 55%, transparent 100%)",
           }}
         />
-
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
@@ -45,65 +44,43 @@ export default async function Image() {
               textTransform: "uppercase",
             }}
           >
-            Building Substrate
-          </div>
-
-          <div
-            style={{
-              marginTop: 52,
-              fontSize: 30,
-              fontStyle: "italic",
-              color: "#544F45",
-            }}
-          >
-            Hi, I&apos;m
+            The company · Substrate
           </div>
           <div
             style={{
-              marginTop: 4,
-              display: "flex",
-              flexDirection: "column",
-              fontSize: 120,
-              lineHeight: 0.9,
-              letterSpacing: "-0.04em",
-              maxWidth: 900,
+              marginTop: 36,
+              fontSize: 160,
+              lineHeight: 0.86,
+              letterSpacing: "-0.045em",
               fontWeight: 400,
             }}
           >
-            <div>Yassin</div>
-            <div>Al-Yassin</div>
+            Substrate
           </div>
-
           <div
             style={{
-              marginTop: 44,
-              maxWidth: 820,
-              fontSize: 30,
-              lineHeight: 1.35,
-              letterSpacing: "-0.015em",
-              color: "#1A1815",
-              display: "flex",
-              flexWrap: "wrap",
+              marginTop: 28,
+              fontSize: 38,
+              fontStyle: "italic",
+              color: "#544F45",
+              letterSpacing: "-0.01em",
+              fontWeight: 300,
             }}
           >
-            <span>I build agentic AI for the engineers who design the&nbsp;</span>
-            <span style={{ fontStyle: "italic", color: "#2E6B4F" }}>
-              physical world.
-            </span>
+            AI agents for the physical world.
           </div>
         </div>
-
         <div
           style={{
             alignSelf: "flex-end",
             fontFamily: "monospace",
-            fontSize: 15,
+            fontSize: 13,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             color: "#8A8377",
           }}
         >
-          yassinalyassin.com
+          yassinalyassin.com/substrate
         </div>
       </div>
     ),

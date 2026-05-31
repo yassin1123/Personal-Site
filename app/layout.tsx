@@ -1,20 +1,19 @@
 import type { Metadata } from "next";
-import { Fraunces, Newsreader, JetBrains_Mono } from "next/font/google";
+import { Newsreader, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-display",
-  style: ["normal", "italic"],
-  display: "swap",
-  axes: ["opsz"],
-});
-
 const newsreader = Newsreader({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-serif",
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+const hanken = Hanken_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -28,7 +27,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Yassin Al-Yassin — Building Substrate",
   description:
-    "Hardware engineer building agentic AI for the engineers who design the physical world. Currently building Substrate — the agentic platform for deep-tech engineering.",
+    "I build agentic AI for the engineers who design the physical world. Building Substrate — the agentic platform for deep-tech engineering.",
   metadataBase: new URL("https://yassinalyassin.com"),
   openGraph: {
     title: "Yassin Al-Yassin",
@@ -55,7 +54,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={`${fraunces.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
+      className={`${newsreader.variable} ${hanken.variable} ${jetbrainsMono.variable}`}
     >
       <body>
         <a className="skip-link" href="#main">

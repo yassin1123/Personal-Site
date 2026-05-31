@@ -17,8 +17,8 @@ export default function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#F4EFE6",
-          color: "#1C1A17",
+          background: "#1A1815",
+          color: "#F6F2E9",
           padding: "74px 84px",
           position: "relative",
         }}
@@ -31,51 +31,44 @@ export default function Image() {
             right: 0,
             height: 4,
             background:
-              "linear-gradient(90deg, #9C4221 0%, #8A6D3B 55%, transparent 100%)",
+              "linear-gradient(90deg, #2E6B4F 0%, #8A6D3B 55%, transparent 100%)",
           }}
         />
+
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
               fontFamily: "monospace",
               fontSize: 17,
-              letterSpacing: "0.14em",
-              color: "#9C4221",
+              letterSpacing: "0.16em",
+              color: "#7CB89A",
               textTransform: "uppercase",
             }}
           >
-            Substrate · Problem Validated
+            Pre-seed · 2026
           </div>
           <div
             style={{
-              marginTop: 56,
-              display: "flex",
-              flexWrap: "wrap",
-              fontSize: 108,
-              lineHeight: 0.95,
-              letterSpacing: "-0.04em",
-              maxWidth: 920,
+              marginTop: 36,
+              fontSize: 160,
+              lineHeight: 0.86,
+              letterSpacing: "-0.05em",
               fontWeight: 400,
             }}
           >
-            <span>AI agents for the&nbsp;</span>
-            <span style={{ fontStyle: "italic", color: "#9C4221" }}>
-              physical
-            </span>
-            <span>&nbsp;world.</span>
+            Substrate
           </div>
           <div
             style={{
-              marginTop: 44,
-              maxWidth: 800,
+              marginTop: 28,
+              fontSize: 40,
               fontStyle: "italic",
-              fontSize: 38,
-              lineHeight: 1.18,
-              letterSpacing: "-0.02em",
-              color: "#3A352E",
+              color: "#c9c2b2",
+              letterSpacing: "-0.01em",
+              fontWeight: 300,
             }}
           >
-            The agentic platform for deep-tech engineering.
+            AI agents for the physical world.
           </div>
         </div>
 
@@ -83,10 +76,10 @@ export default function Image() {
           style={{
             alignSelf: "flex-end",
             fontFamily: "monospace",
-            fontSize: 15,
+            fontSize: 13,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color: "#6B6457",
+            color: "#8d8678",
           }}
         >
           yassinalyassin.com/deck

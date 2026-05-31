@@ -26,3 +26,7 @@ Thumbs.db
 desktop.png
 mobile.png
 full.png
+
+# design reference bundle (visual reference only, not part of the live site)
+_design-reference/
+_START_HERE_claude_code.md
